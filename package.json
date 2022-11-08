@@ -1,0 +1,24 @@
+{
+  "name": "iam",
+  "version": "1.0.0",
+  "dependencies": {
+    "react": "^18.2.0",
+    "winston": "^3.8.2"
+  },
+  "description": "testing for push and pull",
+  "main": "HW3.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RoeyBenHarushDev/IAM.git"
+  },
+  "author": "Roey, Shahar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RoeyBenHarushDev/IAM/issues"
+  },
+  "homepage": "https://github.com/RoeyBenHarushDev/IAM#readme"
+}
