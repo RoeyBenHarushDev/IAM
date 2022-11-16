@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.2.2",
+    "email-validator": "^2.0.4",
+    "mailboxvalidator-nodejs": "^1.1.3"
+  }
+}

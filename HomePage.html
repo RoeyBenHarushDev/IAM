@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>IAM HomePage</title>
+</head>
+<body>
+    <div class="topNav">
+        <h1>IAM TEAM!</h1>
+        <ul>
+            <li><a href="#">Admin</a></li>
+            <li><a href="#">Setting</a></li>
+            <li><a href="#">Log Out</a></li>
+        </ul>
+    </div>
+    <div class="sideNav">
+        <h1>IAM TEAM!</h1>
+        <div class="line"></div>
+        <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Clients</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+    
+    <form name="newPassForm" action="#">
+    <div class="changePas">
+        <h2>Change Password</h2>
+        <div class="passValid">
+            <label for="current">
+            <h3>Current Password <span class="required">*</span></h3>
+            <input type="password" placeholder="Current Password " required/>
+        </label>
+        <label for="new">
+            <h3>New Password <span class="required">*</span></h3>
+            <input type="password" id="newPassword" placeholder="New Password" required/>
+        </label>
+        <label for="confirm">
+            <h3>Confirm Password <span class="required">*</span></h3>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required/>
+        </label>
+        </div>
+        <div class="submitBtn">
+        <input type="submit" class="btnNewPass" id="matchPass" value="Set New Password">
+    </div>
+    </div>
+</form>
+
+
+
+
+
+        
+    <script src="script.js"></script>
+</body>
+</html>
