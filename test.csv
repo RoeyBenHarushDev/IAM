@@ -1,0 +1,6 @@
+id,firstName,lastName,birthDate,loginDate,password,suspensionDate,suspensionTime,statusOfUser
+1,roey,Ben Harush, 1/1/1997, 15/11/2022,1234,-1,-1,active
+2,gilads,Ben Harush, 1/1/1997, 15/11/2022,123456,-1,-1,active
+3,elad,Ben Harush, 1/1/1997, 15/11/2022,hihihihi,-1,-1,active
+4,Roey,Ben Harush, 1/1/1997, 15/11/2022,ffgff,-1,-1,active
+5,Roey,Ben Harush, 1/1/1997, 15/11/2022,kkk,-1,-1,active
