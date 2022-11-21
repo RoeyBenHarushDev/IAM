@@ -59,5 +59,69 @@ if(matchPass){
         }
     });
 }
+function check(){}
+
+$('#pass, #repass').on('keyup', function () {
+    if ($('#pass').val() == $('#repass').val()) {
+        $('#message').html('Matching').css('color', 'green');
+        $('#openEmailConfirmation').prop('disabled',false)
+
+    } else {
+        $('#message').html('Not Matching').css('color', 'red');
+        $('#openEmailConfirmation').prop('disabled',true)
+    }
+});
+
+// making a json from the sign up form data:
+function getData(form){
+    let formData = new FormData(form);
+    let map = {'action': 'signup'}
+    // pairs the key and value from the form
+    for(let pair of formData.entries()){
+        map[pair[0]] = pair[1]
+    }
+    // console.log("formData: " + JSON.stringify(map)) //Object.fromEntries(map)
+     sendRequest(JSON.stringify(map))
+}
 
 
+// catching the signup form and activating the sending procces
+document.getElementById("sign-up").addEventListener("submit",function (e){
+    e.preventDefault();
+    getData(e.target);
+})
+
+
+//the sending procces
+let sendRequest = function (data) {
+    let body =[]
+    //req headers:
+    let requestOptions = {
+        method: 'POST',
+        redirect: 'follow',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        // the body of the post is the json from the Getdata func
+        body:data
+    };
+    //fetching the server directory for signup
+    fetch("http://localhost:8080/", requestOptions,body)
+        .then(response => response.text())
+        .then(result => {
+            document.getElementById("sign-up").innerHTML = result;
+            console.log(result);
+        })
+        .catch(error => console.log('error', error));
+}
+
+// not working jquery post sending:
+// $("sign-up").off('submit').on("submit", function(e) {
+//     e.preventDefault(); // stop submit
+//     e.stopImmediatePropagation();
+//     $.post('http://localhost:8080/',
+//         { data : this}, // the form content in key=value format
+//         function(response) {
+//             // console.log(response)
+//         })
+// })
