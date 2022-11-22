@@ -13,8 +13,9 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form  id="sign-up" method="post"> <!-- //action="http://localhost:8080/" -->
+            <form  id="sign-up" method="post" action="http://localhost:8080/" > <!-- //action="http://localhost:8080/" -->
                 <h1>Create Account</h1>
+                <input type="hidden" name="action" value="signup">
                 <input type="text" placeholder="Name" name="name" required/>
                 <input type="email" placeholder="Email" name="email" required/>
                 <input id="pass" type="password" placeholder="Password" name="pass" onkeyup='check();' required/>
@@ -62,9 +63,12 @@
             <span class="material-symbols-outlined" id="closeEmailCon">
                 close
                 </span>
+            <form action="http://localhost:8080" id="OTP">
                 <h1>Email Confirmation </h1>
-                <input type="text" placeholder="Enter Code"/>
+                <input type="hidden" name="action" value="OTP" >
+                <input name="OTP" type="text" placeholder="Enter Code"/>
                 <button>Confirm</button>
+            </form>
         </div>
     </div>
 
