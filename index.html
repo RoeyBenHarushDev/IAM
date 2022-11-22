@@ -13,14 +13,14 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form  id="sign-up" method="post" action="http://localhost:8080/" > <!-- //action="http://localhost:8080/" -->
+            <form  id="sign-up" method="post" action="#" onsubmit="myButton.disabled=true;return true"> <!-- //action="http://localhost:8080/" -->
                 <h1>Create Account</h1>
                 <input type="hidden" name="action" value="signup">
                 <input type="text" placeholder="Name" name="name" required/>
                 <input type="email" placeholder="Email" name="email" required/>
                 <input id="pass" type="password" placeholder="Password" name="pass" onkeyup='check();' required/>
                 <input name="repass" id ='repass' type="password" placeholder="Retype your password" onkeyup='check();' required/>
-                <button id="openEmailConfirmation"  >Sign Up</button> <!-- onclick="sendRequest()" -->
+                <input type="submit" name="myButton" id="openEmailConfirmation" value="submit" >Sign Up</input> <!-- onclick="sendRequest()" -->
                 <span id="message"></span>
             </form>
         </div>
@@ -63,7 +63,7 @@
             <span class="material-symbols-outlined" id="closeEmailCon">
                 close
                 </span>
-            <form action="http://localhost:8080" id="OTP">
+           <form  id="OTP">  <!--  action="http://localhost:8080"-->
                 <h1>Email Confirmation </h1>
                 <input type="hidden" name="action" value="OTP" >
                 <input name="OTP" type="text" placeholder="Enter Code"/>
@@ -74,7 +74,7 @@
 
 
 
-    <script src="script.js"></script>
+    <script src="script-qs.js"></script>
 </body>
 
 </html>

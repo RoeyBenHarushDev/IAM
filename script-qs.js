@@ -13,17 +13,17 @@ if(signUpButton){
     signUpButton.addEventListener('click', () => {
         container.classList.add("right-panel-active");
     });
-
+    
     logInButton.addEventListener('click', () => {
         container.classList.remove("right-panel-active");
     });
-
+    
     forgot.addEventListener('click', () => {
         container.classList.add("backFlip-container-active");
         container.style.display = "none";
         emailCon.style.display = "none";
     });
-
+    
     closeForgot.addEventListener('click', () => {
         container.classList.remove("backFlip-container-active");
         container.style.display = "block";
@@ -48,7 +48,6 @@ const newPassword = document.getElementById("newPassword");
 const confirmPassword = document.getElementById("confirmPassword");
 
 if(matchPass){
-
     matchPass.addEventListener('click', ()=> {
         if(newPassword.value == confirmPassword.value){
             return true;
@@ -72,18 +71,16 @@ $('#pass, #repass').on('keyup', function () {
     }
 });
 
-
-
-// making a json from the sign up form data:
-function getData(form) {
+// // making a json from the sign up form data:
+function getData(form){
     let formData = new FormData(form);
     let map = {'action': 'signup'}
     // pairs the key and value from the form
     for(let pair of formData.entries()){
         map[pair[0]] = pair[1]
     }
-    console.log("formData: " + map) //Object.fromEntries(map)
-    sendRequest(map)
+    // console.log("formData: " + JSON.stringify(map)) //Object.fromEntries(map)
+     sendRequest(JSON.stringify(map))
 }
 
 
@@ -93,20 +90,52 @@ document.getElementById("sign-up").addEventListener("submit",function (e){
     getData(e.target);
 })
 
-
 //the sending procces
 let sendRequest = async function (data) {
-    fetch("http://localhost:8080/", {
-        method: "POST",
-        body: JSON.stringify(data)
-    })
-        .then(resp => {
-            return resp.json()
+    let body =[]
+    //req headers:
+
+    let requestOptions = {
+        method: 'POST',
+        // redirect: 'follow',
+
+        // the body of the post is the json from the Getdata func
+        body:data
+    };
+    //fetching the server directory for signup
+    console.log(data)
+    const respons = await fetch("http://localhost:8080", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            document.getElementById("sign-up").innerHTML = result;
+            console.log(result);
         })
-        .then( json => {
-            console.log(json)
-        })
-        .catch(error => {
-            console.log('error', error)
-        })
-};
+        .catch(error => console.log('error', error));
+    console.log(respons.json())
+    return respons.json()
+
+}
+
+// not working jquery post sending:
+// $("sign-up").on("submit", function(e) {
+//     e.preventDefault(); // stop submit
+//     $.post('http://localhost:8080/',
+//         { data : this}, // the form content in key=value format
+//         function(response) {
+//             // console.log(response)
+//         })
+// })
+
+
+// Prevent Double Submits
+// document.querySelectorAll('form').forEach(form => {
+//     form.addEventListener('submit', (e) => {
+//         // Prevent if already submitting
+//         if (form.classList.contains('is-submitting')) {
+//             e.preventDefault();
+//         }
+//
+//         // Add class to hook our visual indicator on
+//         form.classList.add('is-submitting');
+//     });
+// });
