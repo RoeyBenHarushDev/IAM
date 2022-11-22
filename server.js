@@ -4,6 +4,11 @@ var fs = require('fs');
 const csv_parser = require('csv-parser');
 const buffer = require("buffer");
 const validate = require('./validate');
+const Logger = require('./Logger');
+
+
+const logger = new Logger().getInstance();
+exports.logger =logger;
 
     http.createServer(function(req, res) {
     res.writeHead(200);
@@ -24,7 +29,9 @@ const validate = require('./validate');
     }
     res.end();
 
-}).listen(8080);
+}).listen(8080, () => logger.log(`listening on port 8080`));
+
+
 
 /*
 const options = {

@@ -1,19 +1,21 @@
 const crypto = require('crypto');
-/*const result = require('./server');*/
-let result = [];
-var fs = require('fs');
+const fs = require('fs');
 const csv_parser = require('csv-parser');
 const buffer = require("buffer");
 const validate = require('./validate');
-var http = require('http');
+const http = require('http');
 const { parse } = require('querystring');
+const server = require('./server');
+const {onServerConnect} = require("../hash - Copy (2)/validate");
+require('dotenv').config();
+let result = [];
 
 user= {
     "userID": "roni",
     "userPassword": "123"
 }
 
-const secret = 'IAM_team';
+const secret = process.env.secret;
 
 function hash(key) {
     const hash = crypto.createHmac('sha256', secret).update(key).digest('hex');
@@ -33,28 +35,35 @@ function validateSuspention(user) {
     /*console.log(`aftet sum: `);*/
     if(expiredDate.getDate() < today.getDate()){
         /*user is not suspend*/
-        console.log("OK");
+        server.logger.log(`user with id: ${user["id"]} is not suspended- login succeeded`);
     }
     else {
+        server.logger.log(`user with id: ${user["id"]} is suspended- login failed`);
         /*event*/
     }
 };
 
 exports.validatePassword= function validatePassword(userObj) {
-    console.log(result);
     const user = result.find(user=>{
         return user.id==userObj["userID"]
     })
-
     /*check if user password equal to user hashedPassword from csv*/
     if (hash(userObj["userPassword"]) === hash(user.password)){
+        server.logger.log(`user with id: ${user["id"]} entered correct password- starts confirm suspension`);
         validateSuspention(user);
     }
     else {
+        server.logger.log(`user with id: ${user["id"]} entered wrong password- login failed`)
         //emit bad Pass and logger
     }
 };
 
+function emailToId(email) {
+    const user = result.find(user => {
+        return user.email === email;
+    })
+    return user.id;
+};
 
 /*reading csv file into result -> array of jsons*/
 exports.onServerConnect = function onServerConnect(res) {
@@ -67,3 +76,7 @@ exports.onServerConnect = function onServerConnect(res) {
         res.end(err);
     });
 };
+
+
+
+
