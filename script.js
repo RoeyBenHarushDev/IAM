@@ -1,3 +1,4 @@
+
 const signUpButton = document.getElementById('signUp');
 const logInButton = document.getElementById('logIn');
 const container = document.getElementById('container');
@@ -48,7 +49,6 @@ const newPassword = document.getElementById("newPassword");
 const confirmPassword = document.getElementById("confirmPassword");
 
 if(matchPass){
-    
     matchPass.addEventListener('click', ()=> {
         if(newPassword.value == confirmPassword.value){
             return true;
@@ -59,5 +59,107 @@ if(matchPass){
         }
     });
 }
+//Cancellation of sending a form before confirmation of the email
+$(document).ready(function() {
+    $(document).on('submit', '#sign-up', function() {
+        // do your things
+        return false;
+    });
+});
+
+$('#pass, #repass').on('keyup', function () {
+    if ($('#pass').val() == $('#repass').val()) {
+        $('#message').html('Matching').css('color', 'green');
+        $('#openEmailConfirmation').prop('disabled',false)
+
+    } else {
+        $('#message').html('Not Matching').css('color', 'red');
+        $('#openEmailConfirmation').prop('disabled',true)
+    }
+});
+
+const sendSignUpData= () => {
+    const data = {
+        "name":document.getElementById("newUsername").value,
+        "mail":document.getElementById("newUserEmail").value,
+        "pass": document.getElementById("pass").value
+    }
+    fetch("http://localhost:8080/signUp", {
+        method: 'POST',
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            //console.log(response))
+            // window.location.href=response.headers.Location;
+            if (response.status===401){
+                alert("good night yonit the btch");
+            }
+        })
+}
+const sendLoginData= () => {
+    const data = {
+        "mail":document.getElementById("usreEmail").value,
+        "pass": document.getElementById("usrePass").value
+    }
+    fetch("http://localhost:8080/login", {
+        method: 'POST',
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            //console.log(response))
+            // window.location.href=response.headers.Location;
+            if (response.status===401){
+                alert("good night yonit the btch");
+            }
+        })
+}
+const forgotPassweord= () => {
+    const data = {
+        "mail":document.getElementById("newUserEmail").value,
+    }
+    fetch("http://localhost:8080/forgotPassword", {
+        method: 'POST',
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            //console.log(response))
+            // window.location.href=response.headers.Location;
+            if (response.status===401){
+                alert("good night yonit the btch");
+            }
+        })
+}
+const emailConfirmation= () => {
+    const data = {
+        "name":document.getElementById("newUsername").value,
+        "mail":document.getElementById("newUserEmail").value,
+        "pass": document.getElementById("pass").value,
+        "code":document.getElementById("OTPtext").value
+    }
+    fetch("http://localhost:8080/confirm", {
+        method: 'POST',
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            //console.log(response))
+            // window.location.href=response.headers.Location;
+            if (response.status===401){
+                alert("good night yonit the btch");
+            }
+        })
+}
+
+// const sendToServer = (data) => {
+//     fetch("http://localhost:8080/login", {
+//         method: 'POST',
+//         body: JSON.stringify(data)
+//     })
+//         .then(response => {
+//             //console.log(response))
+//          // window.location.href=response.headers.Location;
+//             if (response.status===401){
+//                 alert("good night yonit the btch");
+//             }
+//         })
 
 
