@@ -19,8 +19,7 @@ http.createServer((request, response) => {
     }).on('data', (chunk) => {
         body.push(chunk);
     }).on('end', () => {
-
-    let body = [];
+        let body = [];
    validate.readCsvFile() //first func
         body = Buffer.concat(body).toString();
         body = JSON.parse(body)

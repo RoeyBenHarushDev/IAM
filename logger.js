@@ -6,7 +6,6 @@ const path = require('path');
 class Logger extends EventEmitter {
     constructor () {
         super();
-        this.logger = console;
         this.storage = {
             write: data => fs.appendFile(path.join(__dirname, '/logs.txt'), data, null, () => console.log('logging...'))
         };
@@ -19,14 +18,14 @@ class Logger extends EventEmitter {
         const time = moment().format('YY-MM-DD hh:mm');
         const msg = `${time}-> ${request.method}:${request.url}`;
         this.emit('logToFile', msg);
-        this.logger.log(msg);
+        console.log(msg);
     }
 
-    log (message = '') {
+    log (message = '',state="INFO") {
         const time = moment().format('DD-MM-YY hh:mm');
-        const msg = `${time}-> ${message}`;
+        const msg = `${time}-> [${state}] ${message}`;
         this.emit('logToFile', msg);
-        this.logger.log(`${time}-> ${message}`);
+        console.log(`${time}-> [${state}] ${message}`);
     }
 
     logToFile (data) {
