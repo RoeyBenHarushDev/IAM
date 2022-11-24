@@ -1,44 +1,37 @@
 const http = require("http")
 const port = process.env.PORT || 8080;
-const routes = require("./router")
-const {sendEmail} = require("./Auth.js")
-const fs = require("fs")
-const qs = require("querystring")
+const {sendEmail,otpCompare,forgotPass} = require("./Auth.js")
 const validate = require("./validate");
 const Logger = require('./Logger');
-const {otpCompare} = require("./Auth");
 const logger = new Logger().getInstance();
 const ObjectsToCsv = require('objects-to-csv')
 exports.logger =logger;
 
 // response.writeHeader(200, {'Accept': 'application/json','Access-Control-Allow-Origin' : '*'});
 http.createServer((request, response) => {
-
+    let body = [];
     request.on('error', (err) => {
         console.error(err);
     }).on('data', (chunk) => {
         body.push(chunk);
     }).on('end', () => {
 
-    let body = [];
+
    validate.readCsvFile() //first func
         body = Buffer.concat(body).toString();
+        if (body === []) {
+            console.log("body is empty")
+            response.statusCode = 400
+            return response.end()
+        }
         body = JSON.parse(body)
-
-            if (body == []) {
-                console.log("body is empty")
-                response.statusCode = 400
-                return response.end()
-            }
-
-            if (request.url=="/signUp") urlSignUp(body,response)
-            if (request.url=="/login") urlLogin(body, response)
-            if (request.url=="/confirm") urlConfirm (body,response)
-            if (request.url=="/forgotPassword") urlForgotPassword(body,response)
-
-             response.on('error', (err) => {
-            console.error(err);
-             });
+        if (request.url==="/signUp") urlSignUp(body,response)
+        if (request.url==="/login") urlLogin(body, response)
+        if (request.url==="/confirm") urlConfirm (body,response)
+        if (request.url==="/forgotPassword") urlForgotPassword(body,response)
+         response.on('error', (err) => {
+        console.error(err);
+         });
         response.end();
     });
 
@@ -62,7 +55,7 @@ function urlSignUp(body, response){
     try {
         console.log("url sign up")
 
-        let log = sendEmail(body.mail)
+        sendEmail(body.mail)
         response.writeHeader(200, {'Accept': 'application/json', 'Access-Control-Allow-Origin': '*'});
         return response.end();
     }catch (e){
@@ -91,13 +84,15 @@ function urlConfirm (body,response){
     }
 }
 function urlForgotPassword(body,response){
-    try { console.log("url forgen")
+    try { console.log("url forgotten")
 
         response.writeHeader(200, {
             'Accept': 'application/json',
             'Access-Control-Allow-Origin': '*'
         });
-
+        console.log(body)
+        let log = forgotPass(body)
+        console.log("log: " + log)
         return response.end("h");
     }catch (e){
         console.log(e);

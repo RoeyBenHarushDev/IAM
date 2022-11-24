@@ -50,7 +50,7 @@ const confirmPassword = document.getElementById("confirmPassword");
 
 if(matchPass){
     matchPass.addEventListener('click', ()=> {
-        if(newPassword.value == confirmPassword.value){
+        if(newPassword.value === confirmPassword.value){
             return true;
         }
         else{
@@ -68,7 +68,7 @@ $(document).ready(function() {
 });
 
 $('#pass, #repass').on('keyup', function () {
-    if ($('#pass').val() == $('#repass').val()) {
+    if ($('#pass').val() === $('#repass').val()) {
         $('#message').html('Matching').css('color', 'green');
         $('#openEmailConfirmation').prop('disabled',false)
 
@@ -92,14 +92,14 @@ const sendSignUpData= () => {
             //console.log(response))
             // window.location.href=response.headers.Location;
             if (response.status===401){
-                alert("good night yonit the btch");
+                alert("good night");
             }
         })
 }
 const sendLoginData= () => {
     const data = {
-        "mail":document.getElementById("usreEmail").value,
-        "pass": document.getElementById("usrePass").value
+        "mail":document.getElementById("userEmail").value,
+        "pass": document.getElementById("userPass").value
     }
     fetch("http://localhost:8080/login", {
         method: 'POST',
@@ -109,23 +109,23 @@ const sendLoginData= () => {
             //console.log(response))
             // window.location.href=response.headers.Location;
             if (response.status===401){
-                alert("good night yonit the btch");
+                alert("good night");
             }
         })
 }
-const forgotPassweord= () => {
+const forgotPassword= () => {
     const data = {
-        "mail":document.getElementById("newUserEmail").value,
+        "mail":document.getElementById("emailForgetPass").value,
     }
     fetch("http://localhost:8080/forgotPassword", {
         method: 'POST',
         body: JSON.stringify(data)
     })
         .then(response => {
-            //console.log(response))
+        //console.log(response))
             // window.location.href=response.headers.Location;
             if (response.status===401){
-                alert("good night yonit the btch");
+                alert("good night");
             }
         })
 }
@@ -144,7 +144,7 @@ const emailConfirmation= () => {
             //console.log(response))
             // window.location.href=response.headers.Location;
             if (response.status===401){
-                alert("good night yonit the btch");
+                alert("good night");
             }
         })
 }
@@ -158,7 +158,7 @@ const emailConfirmation= () => {
 //             //console.log(response))
 //          // window.location.href=response.headers.Location;
 //             if (response.status===401){
-//                 alert("good night yonit the btch");
+//                 alert("good night");
 //             }
 //         })
 

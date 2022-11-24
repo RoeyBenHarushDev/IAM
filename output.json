@@ -1,1 +1,36 @@
-[{"id,firstName,lastName,birthDate,loginDate,suspensionDate,password,suspensionTime,statusOfUser,email":["1,roey,Ben Harush,1/1/1997",",15/11/2022,1234,3,active,r@gmail.com"]},{"id,firstName,lastName,birthDate,loginDate,suspensionDate,password,suspensionTime,statusOfUser,email":["2,gilads,Ben Harush","1/1/1997",",15/11/2022,123456,10,active,g@gmail.com"]},{"id,firstName,lastName,birthDate,loginDate,suspensionDate,password,suspensionTime,statusOfUser,email":["3,elad,Ben Harush","1/1/1997",",15/11/2022,abc,3,active,c@gmail.com"]},{"id,firstName,lastName,birthDate,loginDate,suspensionDate,password,suspensionTime,statusOfUser,email":["4,Roey,Ben Harush","1/1/1997",",15/11/2022,ffgff,20,active,b@gmail.com"]},{"id,firstName,lastName,birthDate,loginDate,suspensionDate,password,suspensionTime,statusOfUser,email":["5,Roey,Ben Harush","1/1/1997",",15/11/2022,kkk,2,active,d@gmail.com"]}]
+[
+  {
+    "id,firstName,lastName,birthDate,loginDate,suspensionDate,password,suspensionTime,statusOfUser,email": [
+      "1,roey,Ben Harush,1/1/1997",
+      ",15/11/2022,1234,3,active,r@gmail.com"
+    ]
+  },
+  {
+    "id,firstName,lastName,birthDate,loginDate,suspensionDate,password,suspensionTime,statusOfUser,email": [
+      "2,gilads,Ben Harush",
+      "1/1/1997",
+      ",15/11/2022,123456,10,active,g@gmail.com"
+    ]
+  },
+  {
+    "id,firstName,lastName,birthDate,loginDate,suspensionDate,password,suspensionTime,statusOfUser,email": [
+      "3,elad,Ben Harush",
+      "1/1/1997",
+      ",15/11/2022,abc,3,active,c@gmail.com"
+    ]
+  },
+  {
+    "id,firstName,lastName,birthDate,loginDate,suspensionDate,password,suspensionTime,statusOfUser,email": [
+      "4,Roey,Ben Harush",
+      "1/1/1997",
+      ",15/11/2022,ffgff,20,active,b@gmail.com"
+    ]
+  },
+  {
+    "id,firstName,lastName,birthDate,loginDate,suspensionDate,password,suspensionTime,statusOfUser,email": [
+      "5,Roey,Ben Harush",
+      "1/1/1997",
+      ",15/11/2022,kkk,2,active,d@gmail.com"
+    ]
+  }
+]

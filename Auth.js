@@ -5,6 +5,8 @@ const fs = require('fs')
 const ejs = require("ejs");
 const JSON = require("JSON")
 const list = require("./OTP-pass.json")
+const {hash} = require("./validate");
+
 
 // compare emails func
 function StrCompare(str1, str2) {
@@ -13,6 +15,16 @@ function StrCompare(str1, str2) {
     return str1 === str2;
 }
 
+// the transport metadata
+const transporter = node.createTransport(smtp({
+    service: 'gmail',
+    host: 'smtp.gmail.com',
+    auth: {
+        user: 'IamShenkar@gmail.com',
+        pass: 'vghbaugbqhwxfktf'
+    }
+}));
+
 async function sendEmail(email) {
     //parses the Postman JSON
     // let mail = JSON.parse(email)
@@ -20,7 +32,7 @@ async function sendEmail(email) {
     let OTP = otpGenerator.generate(6, {upperCaseAlphabets: false, lowerCaseAlphabets: false, specialChars: false})
 
     //puts the ejs file into a var (the email structure)
-    const data = await ejs.renderFile(__dirname + "/test.ejs", {name: 'Stranger', code: OTP});
+    const data = await ejs.renderFile(__dirname + "/OTP-mail.ejs", {name: 'Stranger', code: OTP});
 
     //the mailing metadata
     const mainOptions = {
@@ -31,15 +43,7 @@ async function sendEmail(email) {
         html: data
     };
 
-    // the transport metadata
-    const transporter = node.createTransport(smtp({
-        service: 'gmail',
-        host: 'smtp.gmail.com',
-        auth: {
-            user: 'IamShenkar@gmail.com',
-            pass: 'vghbaugbqhwxfktf'
-        }
-    }));
+
     let json
 
     // checks if email already exists
@@ -86,23 +90,48 @@ async function otpCompare(email ,code)
             }
         }
     })
-};
+}
+
+async function forgotPass(mail){
+
+    function generatePassword() {
+        let length = 12,
+            charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+            retVal = "";
+        for (let i = 0, n = charset.length; i < length; ++i) {
+            retVal += charset.charAt(Math.random() * n);
+        }
+        return retVal;
+    }
+    //generate random pass:
+    let pass = generatePassword()
+    // put the ejs and new pass in data
+    let data = await ejs.renderFile(__dirname + "/OTP-mail.ejs", {name: 'Stranger', code: pass});
+
+    //the mailing metadata
+    const mainOptions = {
+        from: 'IamShenkar@gmail.com',
+        to: mail.mail,   //mail.emailId,
+        subject: 'New Password for IAM',
+        // text: 'Your OTP is: ' + OTP
+        html: data
+    };
 
 
-// function verEmail(req,res) {
-//     let body = []
-//     let tmp;
-//     let send;
-//     req.on('data',chunk => body.push(chunk))
-//         .on('end',()=>{
-//             body = Buffer.concat(body).toString();
-//             tmp = JSON.parse(body);
-//             console.log(tmp);
-//             send = sendEmail(tmp);
-//             console.log(send);
-//             res.end('sent');
-//         })
-// }
-// module.exports = {verEmail: verEmail}
-module.exports = {sendEmail: sendEmail, otpCompare: otpCompare}
-// let a = verEmail("shaharariel95@gmail.com")
+    //send the mail with the new Password to the client email
+    await transporter.sendMail(mainOptions, (err, info) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('Message sent: ' + info.response + "\nwith new Pass: " + pass);
+        }
+    });
+
+    let hashed = hash(pass)
+    console.log("hashed pass: " + hashed)
+
+}
+
+
+module.exports = {sendEmail: sendEmail, otpCompare: otpCompare,forgotPass:forgotPass}
+

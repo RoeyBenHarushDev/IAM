@@ -32,7 +32,7 @@ class Logger extends EventEmitter {
     logToFile (data) {
         this.storage.write(data + '\n');
     }
-};
+}
 
 class Singleton {
     constructor() {
@@ -43,6 +43,6 @@ class Singleton {
     getInstance() {
         return Singleton.instance;
     }
-};
+}
 
 module.exports = Singleton;
