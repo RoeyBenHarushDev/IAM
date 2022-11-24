@@ -1,3 +1,4 @@
+
 const signUpButton = document.getElementById('signUp');
 const logInButton = document.getElementById('logIn');
 const container = document.getElementById('container');
@@ -13,17 +14,17 @@ if(signUpButton){
     signUpButton.addEventListener('click', () => {
         container.classList.add("right-panel-active");
     });
-
+    
     logInButton.addEventListener('click', () => {
         container.classList.remove("right-panel-active");
     });
-
+    
     forgot.addEventListener('click', () => {
         container.classList.add("backFlip-container-active");
         container.style.display = "none";
         emailCon.style.display = "none";
     });
-
+    
     closeForgot.addEventListener('click', () => {
         container.classList.remove("backFlip-container-active");
         container.style.display = "block";
@@ -48,7 +49,6 @@ const newPassword = document.getElementById("newPassword");
 const confirmPassword = document.getElementById("confirmPassword");
 
 if(matchPass){
-
     matchPass.addEventListener('click', ()=> {
         if(newPassword.value == confirmPassword.value){
             return true;
@@ -59,7 +59,13 @@ if(matchPass){
         }
     });
 }
-function check(){}
+//Cancellation of sending a form before confirmation of the email
+$(document).ready(function() {
+    $(document).on('submit', '#sign-up', function() {
+        // do your things
+        return false;
+    });
+});
 
 $('#pass, #repass').on('keyup', function () {
     if ($('#pass').val() == $('#repass').val()) {
@@ -72,41 +78,88 @@ $('#pass, #repass').on('keyup', function () {
     }
 });
 
-
-
-// making a json from the sign up form data:
-function getData(form) {
-    let formData = new FormData(form);
-    let map = {'action': 'signup'}
-    // pairs the key and value from the form
-    for(let pair of formData.entries()){
-        map[pair[0]] = pair[1]
+const sendSignUpData= () => {
+    const data = {
+        "name":document.getElementById("newUsername").value,
+        "mail":document.getElementById("newUserEmail").value,
+        "pass": document.getElementById("pass").value
     }
-    console.log("formData: " + map) //Object.fromEntries(map)
-    sendRequest(map)
-}
-
-
-// catching the signup form and activating the sending procces
-document.getElementById("sign-up").addEventListener("submit",function (e){
-    e.preventDefault();
-    getData(e.target);
-})
-
-
-//the sending procces
-let sendRequest = async function (data) {
-    fetch("http://localhost:8080/", {
-        method: "POST",
+    fetch("http://localhost:8080/signUp", {
+        method: 'POST',
         body: JSON.stringify(data)
     })
-        .then(resp => {
-            return resp.json()
+        .then(response => {
+            //console.log(response))
+            // window.location.href=response.headers.Location;
+            if (response.status===401){
+                alert("good night yonit the btch");
+            }
         })
-        .then( json => {
-            console.log(json)
+}
+const sendLoginData= () => {
+    const data = {
+        "mail":document.getElementById("usreEmail").value,
+        "pass": document.getElementById("usrePass").value
+    }
+    fetch("http://localhost:8080/login", {
+        method: 'POST',
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            //console.log(response))
+            // window.location.href=response.headers.Location;
+            if (response.status===401){
+                alert("good night yonit the btch");
+            }
         })
-        .catch(error => {
-            console.log('error', error)
+}
+const forgotPassweord= () => {
+    const data = {
+        "mail":document.getElementById("newUserEmail").value,
+    }
+    fetch("http://localhost:8080/forgotPassword", {
+        method: 'POST',
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            //console.log(response))
+            // window.location.href=response.headers.Location;
+            if (response.status===401){
+                alert("good night yonit the btch");
+            }
         })
-};
+}
+const emailConfirmation= () => {
+    const data = {
+        "name":document.getElementById("newUsername").value,
+        "mail":document.getElementById("newUserEmail").value,
+        "pass": document.getElementById("pass").value,
+        "code":document.getElementById("OTPtext").value
+    }
+    fetch("http://localhost:8080/confirm", {
+        method: 'POST',
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            //console.log(response))
+            // window.location.href=response.headers.Location;
+            if (response.status===401){
+                alert("good night yonit the btch");
+            }
+        })
+}
+
+// const sendToServer = (data) => {
+//     fetch("http://localhost:8080/login", {
+//         method: 'POST',
+//         body: JSON.stringify(data)
+//     })
+//         .then(response => {
+//             //console.log(response))
+//          // window.location.href=response.headers.Location;
+//             if (response.status===401){
+//                 alert("good night yonit the btch");
+//             }
+//         })
+
+

@@ -2,47 +2,108 @@ const http = require("http")
 const port = process.env.PORT || 8080;
 const routes = require("./router")
 const {sendEmail} = require("./Auth.js")
+const fs = require("fs")
+const qs = require("querystring")
+const validate = require("./validate");
+const Logger = require('./Logger');
+const {otpCompare} = require("./Auth");
+const logger = new Logger().getInstance();
+const ObjectsToCsv = require('objects-to-csv')
+exports.logger =logger;
 
+// response.writeHeader(200, {'Accept': 'application/json','Access-Control-Allow-Origin' : '*'});
 http.createServer((request, response) => {
-    response.setHeader('Access-Control-Allow-Origin', '*');
-    const { headers ,method, url } = request;
-    let body = [];
+
     request.on('error', (err) => {
         console.error(err);
-
     }).on('data', (chunk) => {
         body.push(chunk);
-
     }).on('end', () => {
+
+    let body = [];
+   validate.readCsvFile() //first func
         body = Buffer.concat(body).toString();
-        let json = JSON.parse(body)
-        if(request.method === 'POST' && json.action === 'signup'){
-            let log = sendEmail(json.email)
-            console.log(log)
-        }
+        body = JSON.parse(body)
 
-        //////// testing:
-        // console.log("before:" + body)
-        console.log("Json-email: " + json.email + " name: " + json.name + " pass: " + json.pass)
+            if (body == []) {
+                console.log("body is empty")
+                response.statusCode = 400
+                return response.end()
+            }
 
+            if (request.url=="/signUp") urlSignUp(body,response)
+            if (request.url=="/login") urlLogin(body, response)
+            if (request.url=="/confirm") urlConfirm (body,response)
+            if (request.url=="/forgotPassword") urlForgotPassword(body,response)
 
-        response.on('error', (err) => {
+             response.on('error', (err) => {
             console.error(err);
+             });
+        response.end();
+    });
+
+}).listen(port,()=>logger.log("listening on port: " + port));
+
+function urlLogin(body, response){
+    try {
+        console.log("url login")
+        validate.validatePassword(body)
+        response.writeHeader(307, {'Location': './HomePage.html','Accept': 'application/json','Access-Control-Allow-Origin' : '*'});
+        return response.end();
+    }
+    catch (e){
+        console.log(e);
+        // response.statusCode=401
+        response.writeHeader(401, {'Accept': 'application/json','Access-Control-Allow-Origin' : '*'});
+        return response.end(e.message)
+    }
+}
+function urlSignUp(body, response){
+    try {
+        console.log("url sign up")
+
+        let log = sendEmail(body.mail)
+        response.writeHeader(200, {'Accept': 'application/json', 'Access-Control-Allow-Origin': '*'});
+        return response.end();
+    }catch (e){
+            console.log(e);
+            // response.statusCode=401
+            response.writeHeader(401, {'Accept': 'application/json','Access-Control-Allow-Origin' : '*'});
+            return response.end(e.message)
+        }
+}
+function urlConfirm (body,response){
+    try {
+        let log = otpCompare(body.mail, body.code);
+        //response.write(log);
+        let pass = validate.hash(body.pass)
+
+        response.writeHeader(200, {
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        });
+        return response.end();
+    }catch (e){
+        console.log(e);
+        // response.statusCode=401
+        response.writeHeader(401, {'Accept': 'application/json','Access-Control-Allow-Origin' : '*'});
+        return response.end(e.message)
+    }
+}
+function urlForgotPassword(body,response){
+    try { console.log("url forgen")
+
+        response.writeHeader(200, {
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin': '*'
         });
 
-        response.statusCode = 200;
-        response.setHeader('Content-Type', 'application/json');
-        // Note: the 2 lines above could be replaced with this next one:
-        // response.writeHead(200, {'Content-Type': 'application/json'})
+        return response.end("h");
+    }catch (e){
+        console.log(e);
+        // response.statusCode=401
+        response.writeHeader(401, {'Accept': 'application/json','Access-Control-Allow-Origin' : '*'});
+        return response.end(e.message)
+    }
+}
 
-        const responseBody = { headers, method, url, body };
-
-        // response.write(JSON.stringify(responseBody));
-        response.write("data received");
-        response.end();
-        // Note: the 2 lines above could be replaced with this next one:
-        // response.end(JSON.stringify(responseBody))
-
-        // END OF NEW STUFF
-    });
-}).listen(port,()=>console.log("listening on port: " + port));

@@ -1,6 +1,5 @@
 const {verEmail} = require("./Auth.js")
 
-
 const ROUTES = {
     GET: {
         '/' : ''
@@ -18,10 +17,7 @@ module.exports = (req,res) =>{
     return handler(req,res);
 }
 
-
-
 //controller:
-
 function errorHandler(req,res){
     res.writeHeader(404);
     res.write('Bad Request');

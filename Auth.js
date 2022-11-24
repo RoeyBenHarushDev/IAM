@@ -13,9 +13,6 @@ function StrCompare(str1, str2) {
     return str1 === str2;
 }
 
-
-
-
 async function sendEmail(email) {
     //parses the Postman JSON
     // let mail = JSON.parse(email)
@@ -74,6 +71,24 @@ async function sendEmail(email) {
     });
 }
 
+async function otpCompare(email ,code)
+{
+    list.table.forEach(function (i)
+    {
+        if(email === i.mail){
+            if(code === i.code)
+            {
+                return "success";
+            }
+            else
+            {
+                return "failed";
+            }
+        }
+    })
+};
+
+
 // function verEmail(req,res) {
 //     let body = []
 //     let tmp;
@@ -89,5 +104,5 @@ async function sendEmail(email) {
 //         })
 // }
 // module.exports = {verEmail: verEmail}
-module.exports = {sendEmail: sendEmail}
+module.exports = {sendEmail: sendEmail, otpCompare: otpCompare}
 // let a = verEmail("shaharariel95@gmail.com")

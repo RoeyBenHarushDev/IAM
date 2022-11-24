@@ -13,24 +13,23 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form  id="sign-up" method="post" action="#" onsubmit="myButton.disabled=true;return true"> <!-- //action="http://localhost:8080/" -->
+            <form  id="sign-up" method="post" >
                 <h1>Create Account</h1>
-                <input type="hidden" name="action" value="signup">
-                <input type="text" placeholder="Name" name="name" required/>
-                <input type="email" placeholder="Email" name="email" required/>
-                <input id="pass" type="password" placeholder="Password" name="pass" onkeyup='check();' required/>
-                <input name="repass" id ='repass' type="password" placeholder="Retype your password" onkeyup='check();' required/>
-                <input type="submit" name="myButton" id="openEmailConfirmation" value="submit" >Sign Up</input> <!-- onclick="sendRequest()" -->
+                <input type="text" placeholder="Name" name="name" id="newUsername" required/>
+                <input type="email" placeholder="Email" name="email" id="newUserEmail" required/>
+                <input  type="password" placeholder="Password"  name="pass" id="pass" required/>
+                <input name="repass" id ='repass' type="password"  placeholder="Retype your password"  required/>
+                <button id="openEmailConfirmation" onclick="sendSignUpData()" >Sign Up</button>
                 <span id="message"></span>
             </form>
         </div>
         <div class="form-container sign-in-container">
             <form action="#">
                 <h1>Log in</h1>
-                <input type="email" placeholder="Email" required/>
-                <input type="password" placeholder="Password" required/>
+                <input type="email" placeholder="Email" id="usreEmail" required/>
+                <input type="password" placeholder="Password" id="usrePass" required/>
                 <a href="#" id="forgot">Forgot your password?</a>
-                <button>Log In</button>
+                <button onclick="sendLoginData()">Log In</button>
             </form>
         </div>
         <div class="overlay-container">
@@ -54,8 +53,8 @@
                 close
                 </span>
             <h1>FORGOT PASSWORD ?</h1>
-            <input type="email" placeholder="Email" />
-            <button>Reset My Password</button>
+            <input type="email" placeholder="Email" id="emailPorgetPass" />
+            <button onclick="forgotPassweord()">Reset My Password</button>
         </div>
     </div>
     <div class="emailConfirmation" id="emailConfirmation">
@@ -63,18 +62,17 @@
             <span class="material-symbols-outlined" id="closeEmailCon">
                 close
                 </span>
-           <form  id="OTP">  <!--  action="http://localhost:8080"-->
+            <form  id="OTP">
                 <h1>Email Confirmation </h1>
-                <input type="hidden" name="action" value="OTP" >
-                <input name="OTP" type="text" placeholder="Enter Code"/>
-                <button>Confirm</button>
+                <input name="OTP" type="text" placeholder="Enter Code" id="OTPtext"/>
+                <button onclick="emailConfirmation()">Confirm</button>
             </form>
         </div>
     </div>
 
 
 
-    <script src="script-qs.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
