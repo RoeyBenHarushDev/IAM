@@ -2,7 +2,8 @@ const { constructResponse } = require("../utils");
 const dbHandler = require("../dbHandler");
 const writeCsv = require("../writeCsv");
 const validate = require("../validate")
-const { sendEmail, otpCompare } = require("../Auth.js");
+const { sendEmail, otpCompare,forgotPass } = require("../Auth.js");
+
 
 module.exports = {
   "/login": function handleLogin(body, response) {
@@ -16,12 +17,12 @@ module.exports = {
       return constructResponse(response, { error: e.message }, 401);
     }
   },
-  "/signup": function handleSignup(body, response) {
+  "/signUp": async function handleSignup(body, response) {
     try {
       console.log({ body });
+      await sendEmail(body.mail)
       writeCsv.createUserObject(body);
       dbHandler.readCsvFile();
-      //sendEmail(body.mail);
       return constructResponse(response, {}, 200);
     } catch (e) {
       console.log(e);
@@ -30,18 +31,20 @@ module.exports = {
   },
   "/confirm": function handleConfirm(body, response) {
     try {
-      let log = otpCompare(body.mail, body.code);
+      let log = otpCompare(body.name,body.mail,body.pass,body.code);        
+      console.log(log)
       //response.write(log);
       let pass = validate.hash(body.pass);
-      return constructResponse(response, {});
+      return constructResponse(response, { error: "OTP is correct" }, 200);
     } catch (e) {
       return constructResponse(response, { error: e.message }, 401);
     }
   },
-  "/forgotPassword": function handleForgotPass(body, response) {
+  "/forgotPassword": async function handleForgotPass(body, response) {
     try {
-      console.log("url forgen");
       return constructResponse(response, {});
+      let log = await forgotPass(body.mail);
+      return response.end();
     } catch (e) {
       console.log(e);
       return constructResponse(response, { error: e.message }, 401);

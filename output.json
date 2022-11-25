@@ -1,7 +1,8 @@
 [
   {
     "id,firstName,lastName,birthDate,loginDate,suspensionDate,password,suspensionTime,statusOfUser,email": [
-      ""
+      "1,roey,Ben Harush,1/1/1997",
+      ",15/11/2022,1234,3,active,r@gmail.com"
     ]
   },
   {

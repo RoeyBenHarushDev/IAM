@@ -1,5 +1,4 @@
 const crypto = require("crypto");
-const fs = require("fs");
 const server = require("./index.js");
 const dbHandler = require("./dbHandler");
 const path = require("path");
@@ -12,8 +11,8 @@ function hash(key) {
   return crypto.createHmac("sha256", secret).update(key).digest("hex");
 }
 
-function validateSuspention(user) {
-  if (user.suspensionTime =='0' || user.suspendStartDate == null){
+function validateSuspension(user) {
+  if (user.suspensionTime =='0' || user.suspensionDate== null){
     server.logger.log(`user: ${user["email"]} is not suspended- login succeeded`);
     return;
   }
@@ -29,7 +28,7 @@ function validateSuspention(user) {
     `suspend : ${suspendStartDate_date} time: ${suspendTime}  expired: ${expiredDate} today: ${today}`
   );
 
-  /*console.log(`aftet sum: `);*/
+
   if (expiredDate.getDate() < today.getDate()) {
     /*user is not suspend*/
     server.logger.log(`user: ${user["email"]} is not suspended- login succeeded`);
@@ -42,14 +41,12 @@ function validateSuspention(user) {
 /*check if user password equal to user hashedPassword from csv*/
 function validatePassword(userObj) {
   const user = dbHandler.emailToUser(userObj.mail);
-  const a=hash(userObj.pass);
-    const b=hash(user.password);
   if (hash(userObj.pass) === hash(user.password)) {
     server.logger.log(
       `user: ${userObj.mail} entered correct password- starts confirm suspension`
     );
   
-    validateSuspention(user); //add try
+    validateSuspension(user); //add try
     
   } else {
     server.logger.log(
@@ -61,10 +58,10 @@ function validatePassword(userObj) {
 }
 
 const statusOfUser = (status) => {
-  if (status == "admin") {
+  if (status === "admin") {
     return "admin";
   } else {
-    return status == "user";
+    return status === "user";
   }
 };
 

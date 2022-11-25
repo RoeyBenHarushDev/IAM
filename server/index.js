@@ -1,15 +1,14 @@
-const http = require("http");
+const http = require("http")
 const port = process.env.PORT || 8080;
-const validate = require("./validate");
-const dbHandler = require("./dbHandler");
-const Logger = require("./logger");
+const Logger = require('./logger');
 const logger = new Logger().getInstance();
 exports.logger = logger;
 const routeHandlers = require("./routes");
 const { constructResponse } = require("./utils");
+const dbHandler = require("./dbHandler");
 
-http
-  .createServer((request, response) => {
+http.createServer((request, response) => {
+  console.log("CREATE");
     let body = [];
     request
       .on("error", (err) => {
@@ -22,7 +21,7 @@ http
         dbHandler.readCsvFile(); 
         body = Buffer.concat(body).toString();
         body = JSON.parse(body);
-        if (body == []) {
+        if (body === []) {
           return constructResponse(response, { error: "body is empty" }, 400);
         }
         const routeHandler = routeHandlers[request.url];

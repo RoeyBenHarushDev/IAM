@@ -13,21 +13,22 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form  id="sign-up" method="post" >
+            <form name="signUpForm" id="sign-up" method="post" >
                 <h1>Create Account</h1>
                 <input type="text" placeholder="Name" name="name" id="newUsername" required/>
                 <input type="email" placeholder="Email" name="email" id="newUserEmail" required/>
                 <input  type="password" placeholder="Password"  name="pass" id="pass" required/>
-                <input name="repass" id ='repass' type="password"  placeholder="Retype your password"  required/>
-                <button id="openEmailConfirmation" onclick="sendSignUpData()" >Sign Up</button>
+                <input name="repass" id ='repass' type="password"  placeholder="Retype your password" required/>
+                <button id="openEmailConfirmation">Sign Up</button>
+                <a href="#" id="linkToOTP">Link To OTP@</a>
                 <span id="message"></span>
             </form>
         </div>
         <div class="form-container sign-in-container">
             <form action="#">
                 <h1>Log in</h1>
-                <input type="email" placeholder="Email" id="usreEmail" required/>
-                <input type="password" placeholder="Password" id="usrePass" required/>
+                <input type="email" placeholder="Email" id=userEmail" required/>
+                <input type="password" placeholder="Password" id="userPass" required/>
                 <a href="#" id="forgot">Forgot your password?</a>
                 <button onclick="sendLoginData()">Log In</button>
             </form>
@@ -36,7 +37,7 @@
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
                     <h1>Welcome Back!</h1>
-                    <p>To keep connected with us please login with your personal info</p>
+                    <p>To keep connected with us please log in with your personal info</p>
                     <button id="logIn">Log In</button>
                 </div>
                 <div class="overlay-panel overlay-right">
@@ -53,19 +54,19 @@
                 close
                 </span>
             <h1>FORGOT PASSWORD ?</h1>
-            <input type="email" placeholder="Email" id="emailPorgetPass" />
-            <button onclick="forgotPassweord()">Reset My Password</button>
+            <input type="email" placeholder="Email" id="emailForgetPass" required />
+            <button onclick="forgotPassword()">Reset My Password</button>
         </div>
     </div>
     <div class="emailConfirmation" id="emailConfirmation">
         <div class="emilConfirmation-overlay">
-            <span class="material-symbols-outlined" id="closeEmailCon">
-                close
-                </span>
+<!--            <span class="material-symbols-outlined" id="closeEmailCon">-->
+<!--                close-->
+<!--                </span>-->
             <form  id="OTP">
                 <h1>Email Confirmation </h1>
-                <input name="OTP" type="text" placeholder="Enter Code" id="OTPtext"/>
-                <button onclick="emailConfirmation()">Confirm</button>
+                <input name="OTP" type="text" placeholder="Enter Code" id="OTPtext" required/>
+                <input id="confirmBtn" type="submit" onclick="emailConfirmation()" value="confirm">
             </form>
         </div>
     </div>

@@ -1,10 +1,7 @@
 {
-  "scripts": {
-    "start": "node index.js"
-  },
   "dependencies": {
+    "csv-parser": "^3.0.0",
     "dotenv": "^16.0.3",
-    "type": "module",
     "ejs": "^3.1.8",
     "JSON": "^1.0.0",
     "moment": "^2.29.4",
@@ -12,5 +9,23 @@
     "nodemailer-smtp-transport": "^2.7.4",
     "objects-to-csv": "^1.3.6",
     "otp-generator": "^4.0.0"
-  }
+  },
+  "name": "iam",
+  "version": "1.0.0",
+  "description": "Iam shenkar team",
+  "main": " server/index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RoeyBenHarushDev/IAM.git"
+  },
+  "author": "Shahar, Roni, Racheli, Tomer, Gilad, Roey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RoeyBenHarushDev/IAM/issues"
+  },
+  "homepage": "https://github.com/RoeyBenHarushDev/IAM#readme"
 }

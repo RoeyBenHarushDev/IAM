@@ -17,12 +17,14 @@ class Logger extends EventEmitter {
     return this;
   }
 
+/*
   newRequest(request) {
     const time = moment().format("YY-MM-DD hh:mm");
     const msg = `${time}-> ${request.method}:${request.url}`;
     this.emit("logToFile", msg);
     console.log(msg);
   }
+*/
 
   log(message = "", state = "INFO") {
     const time = moment().format("DD-MM-YY hh:mm");

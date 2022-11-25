@@ -1,3 +1,9 @@
 name,email,password,loginDate,suspensionDate,suspensionTime,status,type
 admin,admin@admin.com,adminPass,Fri Nov 25 2022 13:33:45 GMT+0200 (Israel Standard Time),null,0,inactive,admin
-ro,roni@gmail.com,roPass,Fri Nov 25 2022 13:33:45 GMT+0200 (Israel Standard Time),null,0,inactive,admin
+ro,roni@gmail.com,roPass,Fri Nov 25 2022 13:33:45 GMT+0200 (Israel Standard Time),null,0,inactive,adminDon,ro_naor@walla.co.il,1,Fri Nov 25 2022 23:26:38 GMT+0200 (Israel Standard Time),null,0,inactive, user
+rr,ro_naor@walla.co.il,1,Fri Nov 25 2022 23:40:06 GMT+0200 (Israel Standard Time),null,0,inactive, user
+roni test,ro_naor@walla.co.il,1,Fri Nov 25 2022 23:42:39 GMT+0200 (Israel Standard Time),null,0,inactive, user
+roni test,ro_naor@walla.co.il,1,Fri Nov 25 2022 23:49:46 GMT+0200 (Israel Standard Time),null,0,inactive, user
+shahar,shaharariel95@gmail.com,123,Fri Nov 25 2022 23:57:29 GMT+0200 (Israel Standard Time),null,0,inactive, user
+roni test,ro_naor@walla.co.il,234,Sat Nov 26 2022 00:01:07 GMT+0200 (Israel Standard Time),null,0,inactive, user
+roni test,shaharariel95@gmail.com,123,Sat Nov 26 2022 00:01:42 GMT+0200 (Israel Standard Time),null,0,inactive, user

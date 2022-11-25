@@ -8,7 +8,7 @@ function emailToUser(mail) {
 
     console.log(cache)
     const user = cache.find(user => user.email === mail);
-    return user ? user : "User does'nt exist";
+    return user ? user : "no match found";
 }
 
 
@@ -20,10 +20,10 @@ function emailToUser(mail) {
         console.log(err);
     });
     f = f.split("\n");
-    headers = f.shift().split(",");
+    let headers = f.shift().split(",");
     f.forEach(function (d) {
-        tmp = {};
-        row = d.split(",");
+        let tmp = {};
+        let row = d.split(",");
         for (let i = 0; i < headers.length - 1; i++) {
             tmp[headers[i]] = row[i];
         }
