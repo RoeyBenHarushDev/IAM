@@ -51,9 +51,15 @@ function validatePassword(userObj) {
 }
 
 function emailToUser(email) {
-    const user = result.find(user => user => {
-        return user.email === email;})
-    return user ? user : 'No match found';
+    console.log(email)
+    const user = result.find(user => {console.log(user); return user.email === email;})
+    if(user === undefined){
+        console.log("56")
+        return 'No match found'
+    }
+    else{
+        return user
+    }
 }
 
 /*reading csv file into result -> array of jsons*/
@@ -66,7 +72,7 @@ function readCsvFile() {
        f.forEach(function(d){
         let tmp = {}
         let row = d.split(",")
-        for(let i = 0; i < headers.length-1; i++){
+        for(let i = 0; i < headers.length-2; i++){
             tmp[headers[i]] = row[i];
         }
            result.push(tmp);

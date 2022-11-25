@@ -97,7 +97,7 @@ async function forgotPass(mail){
 
     //checks if the user exists
     let user = emailToUser(mail)
-    user = user.toLowerCase()
+    user = user.email.toLowerCase()
     if(user === 'no match found'){
 
         server.logger.log(`user tried to reset pass with the mail: ${mail} and it was not found`)
@@ -128,13 +128,13 @@ async function forgotPass(mail){
 
 
     //send the mail with the new Password to the client email
-    await transporter.sendMail(mainOptions, (err, info) => {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log('Message sent: ' + info.response + "\nwith new Pass: " + pass);
-        }
-    });
+    // await transporter.sendMail(mainOptions, (err, info) => {
+    //     if (err) {
+    //         console.log(err);
+    //     } else {
+    //         console.log('Message sent: ' + info.response + "\nwith new Pass: " + pass);
+    //     }
+    // });
 
     let hashed = hash(pass)
     console.log("hashed pass: " + hashed)
