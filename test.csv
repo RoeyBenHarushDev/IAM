@@ -4,3 +4,4 @@ id,firstName,lastName,birthDate,loginDate,suspensionDate,password,suspensionTime
 3,elad,Ben Harush, 1/1/1997, ,15/11/2022,abc,3,active,c@gmail.com
 4,Roey,Ben Harush, 1/1/1997, ,15/11/2022,ffgff,20,active,b@gmail.com
 5,Roey,Ben Harush, 1/1/1997, ,15/11/2022,kkk,2,active,d@gmail.com
+6,Shahar,Ariel,1/1/1995,20/11/2022,,654, ,active,shaharariel95@gmail.com

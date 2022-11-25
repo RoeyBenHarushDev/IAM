@@ -78,7 +78,7 @@ const statusOfUser=(status)=>{
      else {return  status === "user"}
 }
 
-module.exports= {readCsvFile,validatePassword,hash}
+module.exports= {readCsvFile,validatePassword,hash,emailToUser}
 
 
 

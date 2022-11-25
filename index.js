@@ -15,24 +15,22 @@ http.createServer((request, response) => {
     }).on('data', (chunk) => {
         body.push(chunk);
     }).on('end', () => {
-
-
    validate.readCsvFile() //first func
-        body = Buffer.concat(body).toString();
-        if (body === []) {
-            console.log("body is empty")
-            response.statusCode = 400
-            return response.end()
-        }
-        body = JSON.parse(body)
-        if (request.url==="/signUp") urlSignUp(body,response)
-        if (request.url==="/login") urlLogin(body, response)
-        if (request.url==="/confirm") urlConfirm (body,response)
-        if (request.url==="/forgotPassword") urlForgotPassword(body,response)
-         response.on('error', (err) => {
-        console.error(err);
-         });
-        response.end();
+    body = Buffer.concat(body).toString();
+    if (body === []) {
+        console.log("body is empty")
+        response.statusCode = 400
+        return response.end()
+    }
+    body = JSON.parse(body)
+    if (request.url==="/signUp") urlSignUp(body,response)
+    if (request.url==="/login") urlLogin(body, response)
+    if (request.url==="/confirm") urlConfirm (body,response)
+    if (request.url==="/forgotPassword") urlForgotPassword(body,response)
+     response.on('error', (err) => {
+    console.error(err);
+     });
+    response.end();
     });
 
 }).listen(port,()=>logger.log("listening on port: " + port));
@@ -83,21 +81,20 @@ function urlConfirm (body,response){
         return response.end(e.message)
     }
 }
-function urlForgotPassword(body,response){
+async function  urlForgotPassword(body,response){
     try { console.log("url forgotten")
 
         response.writeHeader(200, {
             'Accept': 'application/json',
             'Access-Control-Allow-Origin': '*'
         });
-        console.log(body)
-        let log = forgotPass(body)
-        console.log("log: " + log)
+        let log = await forgotPass(body.mail)
+        // console.log("log: " + log)
         return response.end("h");
     }catch (e){
         console.log(e);
         // response.statusCode=401
-        response.writeHeader(401, {'Accept': 'application/json','Access-Control-Allow-Origin' : '*'});
+        response.writeHeader(403, {'Accept': 'application/json','Access-Control-Allow-Origin' : '*'});
         return response.end(e.message)
     }
 }

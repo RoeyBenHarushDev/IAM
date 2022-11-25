@@ -5,7 +5,8 @@ const fs = require('fs')
 const ejs = require("ejs");
 const JSON = require("JSON")
 const list = require("./OTP-pass.json")
-const {hash} = require("./validate");
+const {hash, emailToUser} = require("./validate");
+const server = require("./index");
 
 
 // compare emails func
@@ -94,6 +95,15 @@ async function otpCompare(email ,code)
 
 async function forgotPass(mail){
 
+    //checks if the user exists
+    let user = emailToUser(mail)
+    user = user.toLowerCase()
+    if(user === 'no match found'){
+
+        server.logger.log(`user tried to reset pass with the mail: ${mail} and it was not found`)
+        throw new Error("User was not Found!")
+    }
+    // generating the new Pass
     function generatePassword() {
         let length = 12,
             charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
@@ -103,7 +113,6 @@ async function forgotPass(mail){
         }
         return retVal;
     }
-    //generate random pass:
     let pass = generatePassword()
     // put the ejs and new pass in data
     let data = await ejs.renderFile(__dirname + "/OTP-mail.ejs", {name: 'Stranger', code: pass});
@@ -111,7 +120,7 @@ async function forgotPass(mail){
     //the mailing metadata
     const mainOptions = {
         from: 'IamShenkar@gmail.com',
-        to: mail.mail,   //mail.emailId,
+        to: mail,  //mail.emailId,
         subject: 'New Password for IAM',
         // text: 'Your OTP is: ' + OTP
         html: data
