@@ -482,6 +482,10 @@ footer a {
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
 }
+.userStatusModel input[type="submit"]:hover{
+    background-color: black;
+    color: white;
+}
 .userStatusModel input[type="submit"]:active {
 	transform: scale(0.95);
 }
@@ -491,7 +495,7 @@ footer a {
 }
 
 #disp{
-    color:green;
+    color:orange;
     font-size:18px; 
     font-weight:bold; 
     margin-top: 30px;
