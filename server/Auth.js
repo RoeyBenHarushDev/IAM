@@ -68,7 +68,7 @@ async function sendEmail(email) {
 
   json = JSON.stringify(list);
   fs.writeFile(
-    path.join(__dirname, "OTP-pass.json"),
+    path.join('server', "OTP-pass.json"),
     json,
     "utf-8",
     (callback) => {

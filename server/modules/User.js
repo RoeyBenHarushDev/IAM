@@ -24,7 +24,7 @@ module.exports = class User {
     const new_user = `${this.name},${this.email},${this.password},${this.loginDate},${this.suspensionDate},${this.suspensionTime},${this.status}\n`;
     try {
       console.log({ new_user });
-      appendFileSync(path.join(__dirname, "test.csv"), new_user);
+      appendFileSync(path.join('server', "test.csv"), new_user);
     } catch (err) {
       console.error({ err });
     }
