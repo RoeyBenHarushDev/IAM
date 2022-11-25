@@ -1,10 +1,10 @@
 const crypto = require("crypto");
 const fs = require("fs");
 const server = require("./index.js");
+const dbHandler = require("./dbHandler");
 const path = require("path");
-require("dotenv").config({ path: path.join(__dirname, ".env") });
 
-let result = [];
+require("dotenv").config({ path: path.join(__dirname, ".env") });
 
 const { secret } = process.env;
 
@@ -24,10 +24,13 @@ function validateSuspention(user) {
   console.log(
     `suspend : ${suspendStartDate_date} time: ${suspendTime}  expired: ${expiredDate} today: ${today}`
   );
+
   /*console.log(`aftet sum: `);*/
   if (expiredDate.getDate() < today.getDate()) {
     /*user is not suspend*/
     server.logger.log(`user: ${user["email"]} is not suspended- login succeeded`);
+    console.log(cache);
+
   } else {
     throw new Error(`User ${user["email"]} is suspended!`);
     server.logger.log(`user: ${user["email"]} is suspended- login failed`);
@@ -50,31 +53,6 @@ function validatePassword(userObj) {
   }
 }
 
-function emailToUser(email) {
-  const user = result.find((user) => (user) => {
-    return user.email === email;
-  });
-  return user ? user : "No match found";
-}
-
-/*reading csv file into result -> array of jsons*/
-function readCsvFile() {
-  var filePath = path.join(__dirname, "db.csv");
-  var f = fs.readFileSync(filePath, { encoding: "utf-8" }, function (err) {
-    console.log(err);
-  });
-  f = f.split("\n");
-  headers = f.shift().split(",");
-  f.forEach(function (d) {
-    tmp = {};
-    row = d.split(",");
-    for (var i = 0; i < headers.length - 1; i++) {
-      tmp[headers[i]] = row[i];
-    }
-    result.push(tmp);
-  });
-}
-
 const statusOfUser = (status) => {
   if (status == "admin") {
     return "admin";
@@ -83,4 +61,4 @@ const statusOfUser = (status) => {
   }
 };
 
-module.exports = { readCsvFile, validatePassword, hash, emailToUser };
+module.exports = { validatePassword, hash };

@@ -1,6 +1,7 @@
 const http = require("http");
 const port = process.env.PORT || 8080;
 const validate = require("./validate");
+const dbHandler = require("./dbHandler");
 const Logger = require("./logger");
 const logger = new Logger().getInstance();
 exports.logger = logger;
@@ -18,7 +19,7 @@ http
         body.push(chunk);
       })
       .on("end", () => {
-        validate.readCsvFile(); 
+        dbHandler.readCsvFile(); 
         body = Buffer.concat(body).toString();
         body = JSON.parse(body);
         if (body == []) {

@@ -1,13 +1,15 @@
 const { constructResponse } = require("../utils");
-const validate = require("../validate");
+const dbHandler = require("../dbHandler");
 const writeCsv = require("../writeCsv");
+const validate = require("../validate")
 const { sendEmail, otpCompare } = require("../Auth.js");
 
 module.exports = {
   "/login": function handleLogin(body, response) {
     try {
-      validate.emailToUser(body.mail);
+      //dbHandler.emailToUser(body.mail);
       validate.validatePassword(body);
+      dbHandler.readCsvFile();
       return constructResponse(response, { location: "HomePage.html" });
     } catch (e) {
       console.log(e);
@@ -18,6 +20,7 @@ module.exports = {
     try {
       console.log({ body });
       writeCsv.createUserObject(body);
+      dbHandler.readCsvFile();
       //sendEmail(body.mail);
       return constructResponse(response, {}, 200);
     } catch (e) {
