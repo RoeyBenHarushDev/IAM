@@ -13,6 +13,9 @@ function hash(key) {
 }
 
 function validateSuspention(user) {
+  if (user.suspensionTime ==0 || user.suspendStartDate == null){
+    server.logger.log(`user: ${user["email"]} is not suspended- login succeeded`);
+  }
   console.log(user);
   const suspendTime = user["suspensionTime"];
   const suspendStartDate = user["suspensionDate"];
@@ -29,27 +32,30 @@ function validateSuspention(user) {
   if (expiredDate.getDate() < today.getDate()) {
     /*user is not suspend*/
     server.logger.log(`user: ${user["email"]} is not suspended- login succeeded`);
-    console.log(cache);
 
   } else {
-    throw new Error(`User ${user["email"]} is suspended!`);
     server.logger.log(`user: ${user["email"]} is suspended- login failed`);
+    throw new Error(`User ${user["email"]} is suspended!`);
   }
 }
 /*check if user password equal to user hashedPassword from csv*/
 function validatePassword(userObj) {
-  const user = emailToUser(userObj.mail);
+  const user = dbHandler.emailToUser(userObj.mail);
+  const a=hash(userObj.pass);
+    const b=hash(user.password);
   if (hash(userObj.pass) === hash(user.password)) {
     server.logger.log(
       `user: ${userObj.mail} entered correct password- starts confirm suspension`
     );
+  
     validateSuspention(user); //add try
+    
   } else {
     server.logger.log(
       `user: ${userObj.mail} entered wrong password- login failed`
     );
     throw new Error("Incorrect password");
-    //emit bad Pass and logger
+
   }
 }
 

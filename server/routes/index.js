@@ -7,8 +7,8 @@ const { sendEmail, otpCompare } = require("../Auth.js");
 module.exports = {
   "/login": function handleLogin(body, response) {
     try {
-      //dbHandler.emailToUser(body.mail);
-      validate.validatePassword(body);
+        console.log(body);
+        validate.validatePassword(body);
       dbHandler.readCsvFile();
       return constructResponse(response, { location: "HomePage.html" });
     } catch (e) {

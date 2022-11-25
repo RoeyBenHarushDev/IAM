@@ -106,7 +106,7 @@ const sendLoginData = async () => {
       window.location.href = location;
     },
     401: () => {
-      alert("goodnight");
+      alert("Verification Error");
     },
   };
   const body = await response.json();
@@ -131,7 +131,7 @@ const forgotPassweord = () => {
   });
 };
 const emailConfirmation = () => {
-  const data = {
+  const datad = {
     name: document.getElementById("newUsername").value,
     mail: document.getElementById("newUserEmail").value,
     pass: document.getElementById("pass").value,
@@ -139,7 +139,7 @@ const emailConfirmation = () => {
   };
   fetch("http://localhost:8080/confirm", {
     method: "POST",
-    body: JSON.stringify(data),
+    body: JSON.stringify(datad),
   }).then((response) => {
     //console.log(response))
     // window.location.href=response.headers.Location;
