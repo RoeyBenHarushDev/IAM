@@ -7,6 +7,7 @@ const JSON = require("JSON")
 const list = require("./OTP-pass.json")
 const {hash, emailToUser} = require("./validate");
 const server = require("./index");
+const User = require("./user2");
 
 
 // compare emails func
@@ -76,14 +77,13 @@ async function sendEmail(email) {
     });
 }
 
-function otpCompare(email ,code)
-{
-    list.table.forEach(function (i)
-    {
-        if(email === i.mail){
-            if(code === i.code)
-            {
-                return "success";
+function otpCompare(userName, email, pass, code) {
+    let user = new User(userName, email, pass);
+    list.table.forEach(function (i) {
+        if (email === i.mail) {
+            if (code === i.code) {
+                console.log("user in create: " + user);
+                user.toCSVRow();
             }
             else
             {

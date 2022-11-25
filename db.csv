@@ -1,0 +1,5 @@
+name, email, loginDate, password, suspensionDate, suspensionTime, status, type
+roey ben harush,roey1234r@gmail.com,123456,Fri Nov 25 2022 15:29:25 GMT+0200 (Israel Standard Time),null,0,inactive, user
+tomer,tomerduchovni@gmail.com,123,Fri Nov 25 2022 15:31:41 GMT+0200 (Israel Standard Time),null,0,inactive, user
+roni,ro_naor@walla.co.il,1111,Fri Nov 25 2022 16:13:27 GMT+0200 (Israel Standard Time),null,0,inactive, user
+tomer,tomerduchovni@gmail.com,123,Fri Nov 25 2022 16:45:30 GMT+0200 (Israel Standard Time),null,0,inactive, user

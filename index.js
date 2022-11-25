@@ -68,8 +68,7 @@ async function urlSignUp(body, response){
 function urlConfirm (body,response){
     try {
         console.log("url: /confirm")
-        let log =  otpCompare(body.mail, body.code);
-        console.log(log)
+        let log = otpCompare(body.name,body.mail,body.pass,body.code);        console.log(log)
         //response.write(log);
         let pass = validate.hash(body.pass)
         console.log("hashed: " + pass)
