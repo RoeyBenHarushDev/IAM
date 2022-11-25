@@ -34,23 +34,26 @@ function validateSuspension(user) {
     server.logger.log(`user: ${user["email"]} is not suspended- login succeeded`);
 
   } else {
-    server.logger.log(`user: ${user["email"]} is suspended- login failed`);
+    server.logger.log(`user: ${user["email"]} is suspended- login failed`,'ERROR');
     throw new Error(`User ${user["email"]} is suspended!`);
   }
 }
 /*check if user password equal to user hashedPassword from csv*/
 function validatePassword(userObj) {
   const user = dbHandler.emailToUser(userObj.mail);
+  if (user==="no match found"){
+    throw new Error("no match found");
+  }
   if (hash(userObj.pass) === hash(user.password)) {
     server.logger.log(
       `user: ${userObj.mail} entered correct password- starts confirm suspension`
     );
   
-    validateSuspension(user); //add try
+    validateSuspension(user); 
     
   } else {
     server.logger.log(
-      `user: ${userObj.mail} entered wrong password- login failed`
+      `user: ${userObj.mail} entered wrong password- login failed`,'ERROR'
     );
     throw new Error("Incorrect password");
 

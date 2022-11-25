@@ -19,7 +19,7 @@ module.exports = {
   },
   "/signUp": async function handleSignup(body, response) {
     try {
-      console.log({ body });
+      console.log( body );
       await sendEmail(body.mail)
       writeCsv.createUserObject(body);
       dbHandler.readCsvFile();

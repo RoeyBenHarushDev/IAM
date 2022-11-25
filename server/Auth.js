@@ -22,8 +22,8 @@ const transporter = node.createTransport(smtp({
     service: 'gmail',
     host: 'smtp.gmail.com',
     auth: {
-        user: 'IamShenkar@gmail.com',
-        pass: 'laccvjasesimnuwu'
+        user: 'ShenkarIam@gmail.com',
+        pass: 'uozoglubvgojcrtl'
     }
 }));
 
@@ -101,7 +101,7 @@ async function forgotPass(mail){
     console.log("auth: " + user)
     if(user === 'No match found'){
 
-        server.logger.log(`user tried to reset pass with the mail: ${mail} and it was not found`)
+        server.logger.log(`user tried to reset pass with the mail: ${mail} and it was not found`,'WARN')
         throw new Error("User was not Found!")
     }
     user = user.email.toLowerCase()

@@ -20,3 +20,21 @@
 26-11-22 12:01-> [INFO] listening on port: 8080
 26-11-22 12:07-> [INFO] listening on port: 8080
 26-11-22 12:08-> [INFO] listening on port: 8080
+26-11-22 12:12-> [INFO] listening on port: 8080
+26-11-22 12:16-> [INFO] listening on port: 8080
+26-11-22 12:18-> [INFO] listening on port: 8080
+26-11-22 12:18-> [INFO] user: ro_naor@walla.co.il entered correct password- starts confirm suspension
+26-11-22 12:18-> [INFO] user: ro_naor@walla.co.il is not suspended- login succeeded
+26-11-22 12:18-> [INFO] user: ro_naor@walla.co.il entered wrong password- login failed
+26-11-22 12:19-> [INFO] listening on port: 8080
+26-11-22 12:22-> [INFO] listening on port: 8080
+26-11-22 12:22-> [INFO] listening on port: 8080
+26-11-22 12:23-> [INFO] listening on port: 8080
+26-11-22 12:27-> [INFO] listening on port: 8080
+26-11-22 12:34-> [INFO] listening on port: 8080
+26-11-22 12:35-> [INFO] listening on port: 8080
+26-11-22 12:36-> [INFO] listening on port: 8080
+26-11-22 12:37-> [INFO] user: roni@gmail.com entered correct password- starts confirm suspension
+26-11-22 12:37-> [INFO] user: roni@gmail.com is not suspended- login succeeded
+26-11-22 12:45-> [INFO] listening on port: 8080
+26-11-22 12:49-> [INFO] listening on port: 8080

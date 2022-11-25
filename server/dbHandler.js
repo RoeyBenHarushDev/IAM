@@ -5,8 +5,6 @@ const fs = require("fs");
 // function updateUser(email, )
 
 function emailToUser(mail) {
-
-    console.log(cache)
     const user = cache.find(user => user.email === mail);
     return user ? user : "no match found";
 }
