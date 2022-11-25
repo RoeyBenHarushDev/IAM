@@ -6,19 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>IAM HomePage</title>
 </head>
 <body>
     <div class="topNav">
-        <h1>IAM TEAM!</h1>
+        <h1 class="IAM"><font color="orange">IAM </font> TEAM!</h1>
         <ul>
             <li><a href="#">Admin</a></li>
-            <li><a href="#">Setting</a></li>
-            <li><a href="#">Log Out</a></li>
+            <div class="setting">
+            <li><a href="#" class="setting">Setting</a>            </li>
+            <div class="dropdown-content">
+                <a href="#" id="changePassModel">Change Password</a>
+                <a href="#" id="usersStatus">User's Status</a>
+              </div>
+            </div>
+            <li><a href="#" id="logout" onclick="userLogOut()">Log Out</a></li>
         </ul>
     </div>
     <div class="sideNav">
-        <h1>IAM TEAM!</h1>
+        <h1><font color="orange">IAM </font> TEAM!</h1>
         <div class="line"></div>
         <ul>
             <li><a href="#">About</a></li>
@@ -27,14 +34,40 @@
             <li><a href="#">Contact</a></li>
         </ul>
     </div>
+    <div class="welcomeModel" id="welcomeModel">
+        <h1>Welcome To <font color="orange">IAM </font> TEAM!</h1>
+    </div>
+
+    <form name="userStatusForm" class="userForm" action="#">
+    <div class="userStatusModel" id="userStatusModel">
+        <label for="current">
+            <h3>Enter User Email <span class="required">*</span></h3>
+            <input type="email" id="userEmail" placeholder="User Email " required/>
+        </label>
+        <div class="radiouserStatus">
+            <form>
+                  <label for="active">Active</label>
+                <input type="radio" id="active" onchange="openDateForm()" name="userStatus" value="active">
+                  <label for="pending">Pending</label>
+                <input type="radio" id="pending" onchange="openDateForm()" name="userStatus" value="pending">
+                  <label for="closed">Closed</label>
+                <input type="radio" id="closed" onchange="openDateForm()" name="userStatus" value="closed">
+                  <label for="suspended">Suspended</label>
+                <input type="radio" id="suspended" onchange="openDateForm()" name="userStatus" value="suspended">
+            </form> 
+        </div>
+        <div id="disp"></div> 
+        <input type="submit" value="SEND">
+    </div>
+</form>
     
-    <form name="newPassForm" action="#">
-    <div class="changePas">
+    <form name="newPassForm" class="passForm" action="#">
+    <div class="changePas" id="changePass">
         <h2>Change Password</h2>
         <div class="passValid">
             <label for="current">
             <h3>Current Password <span class="required">*</span></h3>
-            <input type="password" placeholder="Current Password " required/>
+            <input type="password" id="currPassword" placeholder="Current Password " required/>
         </label>
         <label for="new">
             <h3>New Password <span class="required">*</span></h3>
