@@ -13,7 +13,7 @@
   "name": "iam",
   "version": "1.0.0",
   "description": "Iam shenkar team",
-  "main": "index.js",
+  "main": " server/index.js",
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

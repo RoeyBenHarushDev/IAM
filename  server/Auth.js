@@ -7,7 +7,7 @@ const JSON = require("JSON")
 const list = require("./OTP-pass.json")
 const {hash, emailToUser} = require("./validate");
 const server = require("./index");
-const User = require("./user2");
+const User = require("../user2");
 
 
 // compare emails func
