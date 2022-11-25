@@ -6,9 +6,11 @@ const Logger = require('./Logger');
 const logger = new Logger().getInstance();
 const ObjectsToCsv = require('objects-to-csv')
 exports.logger =logger;
+const { constructResponse } = require("./utils");
+const {compile} = require("ejs");
 
-// response.writeHeader(200, {'Accept': 'application/json','Access-Control-Allow-Origin' : '*'});
 http.createServer((request, response) => {
+    response.writeHeader(200, {'Accept': 'application/json','Access-Control-Allow-Origin' : '*'});
     let body = [];
     request.on('error', (err) => {
         console.error(err);
@@ -49,36 +51,39 @@ function urlLogin(body, response){
         return response.end(e.message)
     }
 }
-function urlSignUp(body, response){
+async function urlSignUp(body, response){
     try {
         console.log("url sign up")
 
-        sendEmail(body.mail)
+       await sendEmail(body.mail)
         response.writeHeader(200, {'Accept': 'application/json', 'Access-Control-Allow-Origin': '*'});
-        return response.end();
+        return constructResponse(response, { error: "received" }, 200);
     }catch (e){
             console.log(e);
             // response.statusCode=401
             response.writeHeader(401, {'Accept': 'application/json','Access-Control-Allow-Origin' : '*'});
-            return response.end(e.message)
+            return constructResponse(response, { error: e.error }, 403);
         }
 }
 function urlConfirm (body,response){
     try {
-        let log = otpCompare(body.mail, body.code);
+        console.log("url: /confirm")
+        let log =  otpCompare(body.mail, body.code);
+        console.log(log)
         //response.write(log);
         let pass = validate.hash(body.pass)
+        console.log("hashed: " + pass)
 
         response.writeHeader(200, {
             'Accept': 'application/json',
             'Access-Control-Allow-Origin': '*'
         });
-        return response.end();
+        return constructResponse(response, { error: "OTP is correct" }, 200);
     }catch (e){
         console.log(e);
         // response.statusCode=401
-        response.writeHeader(401, {'Accept': 'application/json','Access-Control-Allow-Origin' : '*'});
-        return response.end(e.message)
+        // response.writeHeader(401, {'Accept': 'application/json','Access-Control-Allow-Origin' : '*'});
+        return constructResponse(response, { error: "OTP code is false" }, 403);
     }
 }
 async function  urlForgotPassword(body,response){

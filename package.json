@@ -9,5 +9,23 @@
     "nodemailer-smtp-transport": "^2.7.4",
     "objects-to-csv": "^1.3.6",
     "otp-generator": "^4.0.0"
-  }
+  },
+  "name": "iam",
+  "version": "1.0.0",
+  "description": "Iam shenkar team",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RoeyBenHarushDev/IAM.git"
+  },
+  "author": "Shahar, Roni, Racheli, Tomer, Gilad, Roey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RoeyBenHarushDev/IAM/issues"
+  },
+  "homepage": "https://github.com/RoeyBenHarushDev/IAM#readme"
 }

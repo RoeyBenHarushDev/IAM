@@ -1,4 +1,3 @@
-
 const signUpButton = document.getElementById('signUp');
 const logInButton = document.getElementById('logIn');
 const container = document.getElementById('container');
@@ -14,17 +13,17 @@ if(signUpButton){
     signUpButton.addEventListener('click', () => {
         container.classList.add("right-panel-active");
     });
-    
+
     logInButton.addEventListener('click', () => {
         container.classList.remove("right-panel-active");
     });
-    
+
     forgot.addEventListener('click', () => {
         container.classList.add("backFlip-container-active");
         container.style.display = "none";
         emailCon.style.display = "none";
     });
-    
+
     closeForgot.addEventListener('click', () => {
         container.classList.remove("backFlip-container-active");
         container.style.display = "block";
@@ -39,11 +38,11 @@ if(signUpButton){
         }
     })
 
-    closeEmailCon.addEventListener('click', ()=> {
-        container.classList.remove("emailConfirmation-active");
-        container.style.display = "block";
-        backFlipCon.style.display = "block";
-    })
+    // closeEmailCon.addEventListener('click', ()=> {
+    //     container.classList.remove("emailConfirmation-active");
+    //     container.style.display = "block";
+    //     backFlipCon.style.display = "block";
+    // })
 }
 
 const matchPass = document.getElementById('matchPass');
@@ -52,7 +51,7 @@ const confirmPassword = document.getElementById("confirmPassword");
 
 if(matchPass){
     matchPass.addEventListener('click', ()=> {
-        if(newPassword.value === confirmPassword.value){
+        if(newPassword.value == confirmPassword.value){
             return true;
         }
         else{
@@ -61,108 +60,6 @@ if(matchPass){
         }
     });
 }
-//Cancellation of sending a form before confirmation of the email
-$(document).ready(function() {
-    $(document).on('submit', '#sign-up', function() {
-        // do your things
-        return false;
-    });
-});
-
-$('#pass, #repass').on('keyup', function () {
-    if ($('#pass').val() === $('#repass').val()) {
-        $('#message').html('Matching').css('color', 'green');
-        $('#openEmailConfirmation').prop('disabled',false)
-
-    } else {
-        $('#message').html('Not Matching').css('color', 'red');
-        $('#openEmailConfirmation').prop('disabled',true)
-    }
-});
-
-const sendSignUpData= () => {
-    const data = {
-        "name":document.getElementById("newUsername").value,
-        "mail":document.getElementById("newUserEmail").value,
-        "pass": document.getElementById("pass").value
-    }
-    fetch("http://localhost:8080/signUp", {
-        method: 'POST',
-        body: JSON.stringify(data)
-    })
-        .then(response => {
-            //console.log(response))
-            // window.location.href=response.headers.Location;
-            if (response.status===401){
-                alert("good night");
-            }
-        })
-}
-const sendLoginData= () => {
-    const data = {
-        "mail":document.getElementById("userEmail").value,
-        "pass": document.getElementById("userPass").value
-    }
-    fetch("http://localhost:8080/login", {
-        method: 'POST',
-        body: JSON.stringify(data)
-    })
-        .then(response => {
-            //console.log(response))
-            // window.location.href=response.headers.Location;
-            if (response.status===401){
-                alert("good night");
-            }
-        })
-}
-const forgotPassword= () => {
-    const data = {
-        "mail":document.getElementById("emailForgetPass").value,
-    }
-    fetch("http://localhost:8080/forgotPassword", {
-        method: 'POST',
-        body: JSON.stringify(data)
-    })
-        .then(response => {
-        //console.log(response))
-            // window.location.href=response.headers.Location;
-            if (response.status===401){
-                alert("good night");
-            }
-        })
-}
-const emailConfirmation= () => {
-    const data = {
-        "name":document.getElementById("newUsername").value,
-        "mail":document.getElementById("newUserEmail").value,
-        "pass": document.getElementById("pass").value,
-        "code":document.getElementById("OTPtext").value
-    }
-    fetch("http://localhost:8080/confirm", {
-        method: 'POST',
-        body: JSON.stringify(data)
-    })
-        .then(response => {
-            //console.log(response))
-            // window.location.href=response.headers.Location;
-            if (response.status===401){
-                alert("good night");
-            }
-        })
-}
-
-// const sendToServer = (data) => {
-//     fetch("http://localhost:8080/login", {
-//         method: 'POST',
-//         body: JSON.stringify(data)
-//     })
-//         .then(response => {
-//             //console.log(response))
-//          // window.location.href=response.headers.Location;
-//             if (response.status===401){
-//                 alert("good night");
-//             }
-//         })
 
 
 const welcomeModel = document.getElementById('welcomeModel');
@@ -200,6 +97,12 @@ $(document).ready(function() {
         return false;
     });
 });
+$(document).ready(function() {
+    $(document).on('submit', '#OTP', function() {
+        // do your things
+        return false;
+    });
+});
 
 $('#pass, #repass').on('keyup', function () {
     if ($('#pass').val() == $('#repass').val()) {
@@ -218,37 +121,27 @@ function validateForm() {
     let pass = document.forms["sugnUpForm"]["pass"].value;
     let repass = document.forms["sugnUpForm"]["repass"].value;
     if (name == "" || email == "" || pass == "" || repass == "") {
-      alert("You Must Fill In All Fields");
-      return false;
+        alert("You Must Fill In All Fields");
+        return false;
     }
     else{
         sendSignUpData();
         return true
     }
-  }
+}
 
-const sendSignUpData= () => {
-   
+const sendSignUpData= async  () => {
+
     const data = {
         "name":document.getElementById("newUsername").value,
         "mail":document.getElementById("newUserEmail").value,
         "pass": document.getElementById("pass").value,
-        "rePass": document.getElementById("repass").value
-    } 
-    function validateForm() {
-        let name = document.forms["sugnUpForm"]["name"].value;
-        let email = document.forms["sugnUpForm"]["email"].value;
-        let pass = document.forms["sugnUpForm"]["pass"].value;
-        let repass = document.forms["sugnUpForm"]["repass"].value;
-        if (name == "" || email == "" || pass == "" || repass == "") {
-          alert("You Must Fill In All Fields");
-          return false;
-        }
-      }
-        fetch("http://localhost:8080/signUp", {
-            method: 'POST',
-            body: JSON.stringify(data)
-        })
+        // "rePass": document.getElementById("repass").value
+    }
+    await fetch("http://localhost:8080/signUp", {
+        method: 'POST',
+        body: JSON.stringify(data)
+    })
         .then(response => {
             //console.log(response))
             // window.location.href=response.headers.Location;
@@ -256,7 +149,7 @@ const sendSignUpData= () => {
                 alert("good night yonit the btch");
             }
         })
-    }
+}
 const sendLoginData= () => {
     const data = {
         "mail":document.getElementById("usreEmail").value,
@@ -290,25 +183,34 @@ const forgotPassweord= () => {
             }
         })
 }
-const emailConfirmation= () => {
+
+const emailConfirmation = async () => {
     const data = {
         "name":document.getElementById("newUsername").value,
         "mail":document.getElementById("newUserEmail").value,
         "pass": document.getElementById("pass").value,
         "code":document.getElementById("OTPtext").value
+    };
+    const response = await fetch("http://localhost:8080/confirm", {
+        method: "POST",
+        body: JSON.stringify(data),
+    });
+
+    const handleResponse = {
+        200: ({ location = "index.html" }) => {
+            window.location.href = location;
+            alert("User was added")
+        },
+        403: () => {
+            alert("OTP code is false");
+        },
+    };
+    const body = await response.json();
+    const handler = handleResponse[response.status];
+    if (handler) {
+        handler(body);
     }
-    fetch("http://localhost:8080/confirm", {
-        method: 'POST',
-        body: JSON.stringify(data)
-    })
-        .then(response => {
-            //console.log(response))
-            // window.location.href=response.headers.Location;
-            if (response.status===401){
-                alert("good night yonit the btch");
-            }
-        })
-}
+};
 
 // const sendToServer = (data) => {
 //     fetch("http://localhost:8080/login", {
@@ -338,13 +240,13 @@ if(userLogOut){
                 return c.trim().startsWith(name + '=');
             });
         }
-        
+
         function delete_cookie( name, path, domain ) {
             if( get_cookie( name ) ) {
                 document.cookie = name + "=" +
-                ((path) ? ";path="+path:"")+
-                ((domain)?";domain="+domain:"") +
-                ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
+                    ((path) ? ";path="+path:"")+
+                    ((domain)?";domain="+domain:"") +
+                    ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
             }
         }
         window.location = "index.html";
@@ -354,10 +256,10 @@ if(userLogOut){
 
 // While suspended are checked date form is open
 
-function openDateForm() { 
+function openDateForm() {
     let checkRadio = document.querySelector(
         'input[name="userStatus"]:checked');
-      
+
     if(checkRadio.value == "suspended") {
         document.getElementById("disp").innerHTML = checkRadio.value + " button checked" + `<br><input type="date" id="start" name="trip-start"
         value="2018-07-22"
@@ -371,5 +273,3 @@ function openDateForm() {
             = "No one selected";
     }
 }
-
-

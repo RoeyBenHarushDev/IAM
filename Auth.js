@@ -51,7 +51,7 @@ async function sendEmail(email) {
     try{
         list.table.forEach(function (i) {
             if (StrCompare(JSON.stringify(i.mail), JSON.stringify(mainOptions.to))) {
-                throw "Email already exists";
+                throw new Error("Email already exists");
             }
         })
     } catch (err) {
@@ -76,7 +76,7 @@ async function sendEmail(email) {
     });
 }
 
-async function otpCompare(email ,code)
+function otpCompare(email ,code)
 {
     list.table.forEach(function (i)
     {
@@ -87,7 +87,7 @@ async function otpCompare(email ,code)
             }
             else
             {
-                return "failed";
+                throw new Error("OTP is false")
             }
         }
     })
