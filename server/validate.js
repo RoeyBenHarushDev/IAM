@@ -13,8 +13,9 @@ function hash(key) {
 }
 
 function validateSuspention(user) {
-  if (user.suspensionTime ==0 || user.suspendStartDate == null){
+  if (user.suspensionTime =='0' || user.suspendStartDate == null){
     server.logger.log(`user: ${user["email"]} is not suspended- login succeeded`);
+    return;
   }
   console.log(user);
   const suspendTime = user["suspensionTime"];
