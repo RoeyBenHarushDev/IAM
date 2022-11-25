@@ -20,6 +20,7 @@
                 <input  type="password" placeholder="Password"  name="pass" id="pass" required/>
                 <input name="repass" id ='repass' type="password"  placeholder="Retype your password" required/>
                 <button id="openEmailConfirmation">Sign Up</button>
+                <a href="#" id="linkToOTP">Link To OTP@</a>
                 <span id="message"></span>
             </form>
         </div>
@@ -65,7 +66,7 @@
             <form  id="OTP">
                 <h1>Email Confirmation </h1>
                 <input name="OTP" type="text" placeholder="Enter Code" id="OTPtext" required/>
-                <input  type="submit" onclick="emailConfirmation()">Confirm</input>
+                <input id="confirmBtn" type="submit" onclick="emailConfirmation()" value="confirm">
             </form>
         </div>
     </div>

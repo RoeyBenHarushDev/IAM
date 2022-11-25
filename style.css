@@ -59,14 +59,28 @@ button {
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
 }
+#confirmBtn{
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: transparent;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    width: 180px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
 
-button:active {
+button:active, #confirmBtn:active {
 	transform: scale(0.95);
 }
 
-button:focus {
+button:focus, #confirmBtn:focus {
 	outline: none;
 }
+
+
 
 form {
     background-color: white;

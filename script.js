@@ -7,6 +7,7 @@ const forgot = document.getElementById('forgot');
 const closeForgot = document.getElementById('closeForgot');
 const openEmailCon = document.getElementById('openEmailConfirmation');
 const closeEmailCon = document.getElementById('closeEmailCon');
+const linkToOTP = document.getElementById('linkToOTP');
 
 if(signUpButton){
 
@@ -36,6 +37,12 @@ if(signUpButton){
             container.style.display = "none";
             backFlipCon.style.display = "none";
         }
+    });
+
+    linkToOTP.addEventListener('click', ()=>{
+        container.classList.add("emailConfirmation-active");
+        container.style.display = "none";
+        backFlipCon.style.display = "none";
     })
 
     // closeEmailCon.addEventListener('click', ()=> {
