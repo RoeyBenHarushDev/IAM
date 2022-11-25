@@ -6,27 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>IAM TEAM</title>
 </head>
 
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form action="#">
+            <form name="sugnUpForm" id="sign-up" method="post" >
                 <h1>Create Account</h1>
-                <input type="text" placeholder="Name" required/>
-                <input type="email" placeholder="Email" required/>
-                <input type="password" placeholder="Password" required/>
+                <input type="text" placeholder="Name" name="name" id="newUsername" required/>
+                <input type="email" placeholder="Email" name="email" id="newUserEmail" required/>
+                <input  type="password" placeholder="Password"  name="pass" id="pass" required/>
+                <input name="repass" id ='repass' type="password"  placeholder="Retype your password" required/>
                 <button id="openEmailConfirmation">Sign Up</button>
+                <span id="message"></span>
             </form>
         </div>
         <div class="form-container sign-in-container">
             <form action="#">
                 <h1>Log in</h1>
-                <input type="email" placeholder="Email" required/>
-                <input type="password" placeholder="Password" required/>
+                <input type="email" placeholder="Email" id="usreEmail" required/>
+                <input type="password" placeholder="Password" id="usrePass" required/>
                 <a href="#" id="forgot">Forgot your password?</a>
-                <button>Log In</button>
+                <button onclick="sendLoginData()">Log In</button>
             </form>
         </div>
         <div class="overlay-container">
@@ -50,8 +53,8 @@
                 close
                 </span>
             <h1>FORGOT PASSWORD ?</h1>
-            <input type="email" placeholder="Email" />
-            <button>Reset My Password</button>
+            <input type="email" placeholder="Email" id="emailPorgetPass" required />
+            <button onclick="forgotPassweord()">Reset My Password</button>
         </div>
     </div>
     <div class="emailConfirmation" id="emailConfirmation">
@@ -59,9 +62,11 @@
             <span class="material-symbols-outlined" id="closeEmailCon">
                 close
                 </span>
+            <form  id="OTP">
                 <h1>Email Confirmation </h1>
-                <input type="text" placeholder="Enter Code"/>
-                <button>Confirm</button>
+                <input name="OTP" type="text" placeholder="Enter Code" id="OTPtext" required/>
+                <button onclick="emailConfirmation()">Confirm</button>
+            </form>
         </div>
     </div>
 

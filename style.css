@@ -69,7 +69,7 @@ button:focus {
 }
 
 form {
-	background-color: #FFFFFF;
+    background-color: white;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -85,6 +85,10 @@ input {
 	padding: 12px 15px;
 	margin: 8px 0;
 	width: 100%;
+}
+
+#openEmailConfirmation{
+    margin-top: 20px;
 }
 
 .container {
@@ -344,6 +348,40 @@ footer a {
     color: rgb(99, 30, 30);
 
 }
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    margin-left: -30px;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.setting:hover .dropdown-content {
+    display: block;
+}
+
+.setting:hover .dropdown-content a {
+    font-weight: bolder;
+    border-bottom: 2px solid black;
+    width: 85%;
+    margin-left: 10px;}
+
+.IAM{
+    cursor: pointer;
+}
+
 .sideNav{
     position: absolute;
     top: 5%;
@@ -378,13 +416,94 @@ footer a {
 .sideNav ul li a:hover{
     color: rgb(99, 30, 30);
 }
-
-.changePas{
+.welcomeModel{
+    display: block;
     position: absolute;
-    top: 16%;
+    top: 20%;
     left: 25%;
     width: 60%;
-    height: 79%;
+    height: 75%;
+    background-color: rgba(247, 247, 247, 0.726);
+    border: 0.5px solid black;
+    border-radius: 20px;
+    box-shadow: 20px 16px rgb(34, 34, 34);
+}
+.passForm, .userForm{
+    background-color: transparent;
+}
+.welcomeModel h1{
+    text-align: center;
+    font-size: 130px;
+    margin-top: 10%;
+}
+.userStatusModel{
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    width: 60%;
+    height: 75%;
+    background-color: rgba(247, 247, 247, 0.726);
+    border: 0.5px solid black;
+    border-radius: 20px;
+    box-shadow: 20px 16px rgb(34, 34, 34);
+}
+
+.userStatusModel h3{
+    margin-top: 10%;
+    font-size: 30px;
+}
+.userStatusModel input{
+    width: 80%;
+}
+.radiouserStatus{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+}
+.radiouserStatus input[type="radio"]{
+    position: relative;
+    width: 40px;
+    margin-top: 40px;
+    right: 53px;
+}
+
+.userStatusModel input[type="submit"]{
+    border: 2px solid black;
+	border-radius: 20px;
+	background-color: transparent;
+	font-size: 20px;
+	font-weight: bolder;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+    width: 160px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+}
+.userStatusModel input[type="submit"]:active {
+	transform: scale(0.95);
+}
+
+.userStatusModel input[type="submit"]:focus {
+	outline: none;
+}
+
+#disp{
+    color:green;
+    font-size:18px; 
+    font-weight:bold; 
+    margin-top: 30px;
+}
+
+.changePas {
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    width: 60%;
+    height: 75%;
     background-color: rgba(247, 247, 247, 0.726);
     border: 0.5px solid black;
     border-radius: 20px;
