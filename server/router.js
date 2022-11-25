@@ -1,11 +1,13 @@
+/*
 const {verEmail} = require("./Auth.js")
 
 const ROUTES = {
-    GET: {
-        '/' : ''
-    },
     POST: {
-        '/' : verEmail
+        '/' : verEmail,
+        '/login' : login,
+        '/signUp' : signUp,
+        '/confirm' : confirm
+
     }
 }
 
@@ -22,4 +24,4 @@ function errorHandler(req,res){
     res.writeHeader(404);
     res.write('Bad Request');
     res.end()
-}
+}*/
