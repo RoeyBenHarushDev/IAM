@@ -18,7 +18,7 @@ http
         body.push(chunk);
       })
       .on("end", () => {
-        validate.readCsvFile(); //first func
+        validate.readCsvFile(); 
         body = Buffer.concat(body).toString();
         body = JSON.parse(body);
         if (body == []) {

@@ -27,10 +27,10 @@ function validateSuspention(user) {
   /*console.log(`aftet sum: `);*/
   if (expiredDate.getDate() < today.getDate()) {
     /*user is not suspend*/
-    server.logger.log(`user: ${user["id"]} is not suspended- login succeeded`);
+    server.logger.log(`user: ${user["email"]} is not suspended- login succeeded`);
   } else {
-    server.logger.log(`user: ${user["id"]} is suspended- login failed`);
-    /*event*/
+    throw new Error(`User ${user["email"]} is suspended!`);
+    server.logger.log(`user: ${user["email"]} is suspended- login failed`);
   }
 }
 /*check if user password equal to user hashedPassword from csv*/
