@@ -1,14 +1,15 @@
 const crypto = require('crypto');
 const fs = require('fs');
-// const csv_parser = require('csv-parser');
-// const buffer = require("buffer");
-// const http = require('http');
-// const { parse } = require('querystring');
 const server = require('./index.js');
 const path = require('path');
 require('dotenv').config();
+const User = require("./User2");
+const { channel } = require("diagnostics_channel");
+const { stringify } = require("querystring");
 
-let result = [];
+
+
+let cache = [];
 
 const secret = process.env.secret;
 
@@ -49,35 +50,35 @@ function validatePassword(userObj) {
         //emit bad Pass and logger
     }
 }
+readCsvFile()
+function emailToUser(mail) {
 
-function emailToUser(email) {
-    console.log(email)
-    const user = result.find(user => {console.log(user); return user.email === email;})
-    if(user === undefined){
-        console.log("56")
-        return 'No match found'
-    }
-    else{
-        return user
-    }
+    console.log(cache)
+    // const user = cache.filter(user => user.email === mail)
+    const user = cache.find(user => user.email === mail);
+    return user ? user : "no match found";
 }
 
-/*reading csv file into result -> array of jsons*/
+
+/*reading csv file into cache -> array of jsons*/
 function readCsvFile() {
-    let filePath = path.join(__dirname, 'test.csv');
-    let f = fs.readFileSync(filePath, {encoding: 'utf-8'},
-        function(err){console.log(err);});
+    cache = [];
+    let filePath = path.join(__dirname, "db.csv");
+    let f = fs.readFileSync(filePath, { encoding: "utf-8" }, function (err) {
+        console.log(err);
+    });
     f = f.split("\n");
     let headers = f.shift().split(",");
-       f.forEach(function(d){
-        let tmp = {}
-        let row = d.split(",")
-        for(let i = 0; i < headers.length-2; i++){
+    f.forEach(function (d) {
+        let tmp = {};
+        let row = d.split(",");
+        for (let i = 0; i < headers.length - 1; i++) {
             tmp[headers[i]] = row[i];
         }
-           result.push(tmp);
+        cache.push(tmp);
     });
 }
+
 
 const statusOfUser=(status)=>{
      if(status === 'admin') {return 'admin';}

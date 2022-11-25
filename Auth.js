@@ -95,14 +95,16 @@ function otpCompare(userName, email, pass, code) {
 
 async function forgotPass(mail){
 
+    console.log("mail: " + mail)
     //checks if the user exists
     let user = emailToUser(mail)
-    user = user.email.toLowerCase()
-    if(user === 'no match found'){
+    console.log("auth: " + user)
+    if(user === 'No match found'){
 
         server.logger.log(`user tried to reset pass with the mail: ${mail} and it was not found`)
         throw new Error("User was not Found!")
     }
+    user = user.email.toLowerCase()
     // generating the new Pass
     function generatePassword() {
         let length = 12,
@@ -138,6 +140,8 @@ async function forgotPass(mail){
 
     let hashed = hash(pass)
     console.log("hashed pass: " + hashed)
+
+
 
 }
 

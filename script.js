@@ -174,9 +174,9 @@ const sendLoginData= () => {
             }
         })
 }
-const forgotPassweord= () => {
+const forgotPassword= () => {
     const data = {
-        "mail":document.getElementById("newUserEmail").value,
+        "mail":document.getElementById("emailForgetPass").value,
     }
     fetch("http://localhost:8080/forgotPassword", {
         method: 'POST',
