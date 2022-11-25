@@ -59,7 +59,7 @@ function emailToUser(email) {
 
 /*reading csv file into result -> array of jsons*/
 function readCsvFile() {
-  var filePath = path.join(__dirname, "test.csv");
+  var filePath = path.join(__dirname, "db.csv");
   var f = fs.readFileSync(filePath, { encoding: "utf-8" }, function (err) {
     console.log(err);
   });
