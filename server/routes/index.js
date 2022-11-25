@@ -11,13 +11,14 @@ module.exports = {
       return constructResponse(response, { location: "HomePage.html" });
     } catch (e) {
       console.log(e);
-      return constructResponse(response, {error: 'Unauthoraized'}, 401);
+      return constructResponse(response, { error: "Unauthoraized" }, 401);
     }
   },
   "/signup": function handleSignup(body, response) {
     try {
+      console.log({ body });
       writeCsv.createUserObject(body);
-      sendEmail(body.mail);
+      //sendEmail(body.mail);
       return constructResponse(response, {}, 200);
     } catch (e) {
       console.log(e);

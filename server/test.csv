@@ -1,2 +1,4 @@
-id,name,email,password,loginDate,suspensionDate,suspensionTime,status
-1,roni,r#fmlk@gmail.com,1,,,,
+1,roninaor,ro_naor@walla.co.il,123,Fri Nov 25 2022 12:45:23 GMT+0200 (Israel Standard Time),null,0,inactive
+1,r,r@gmail.com,1,Fri Nov 25 2022 12:51:17 GMT+0200 (Israel Standard Time),null,0,inactive
+1,e,e@gmail.com,1,Fri Nov 25 2022 12:55:00 GMT+0200 (Israel Standard Time),null,0,inactive
+1,t,ttt@gmail.com,1,null,0,inactive

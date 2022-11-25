@@ -80,7 +80,7 @@ const sendSignUpData = () => {
     mail: document.getElementById("newUserEmail").value,
     pass: document.getElementById("pass").value,
   };
-  fetch("http://localhost:8080/signUp", {
+  fetch("http://localhost:8080/signup", {
     method: "POST",
     body: JSON.stringify(data),
   }).then((response) => {

@@ -5,6 +5,7 @@ const fs = require("fs");
 const ejs = require("ejs");
 const JSON = require("JSON");
 const list = require("./OTP-pass.json");
+const path = require("path");
 
 // compare emails func
 function StrCompare(str1, str2) {
@@ -66,9 +67,14 @@ async function sendEmail(email) {
   list.table.push({ mail: mainOptions.to, code: OTP });
 
   json = JSON.stringify(list);
-  fs.writeFile("./OTP-pass.json", json, "utf-8", (callback) => {
-    console.log("wrote file successfully");
-  });
+  fs.writeFile(
+    path.join(__dirname, "OTP-pass.json"),
+    json,
+    "utf-8",
+    (callback) => {
+      console.log("wrote file successfully");
+    }
+  );
 
   //send the mail with the OTP to the client email
   await transporter.sendMail(mainOptions, (err, info) => {

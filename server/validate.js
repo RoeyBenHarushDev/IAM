@@ -7,7 +7,7 @@ require("dotenv").config({ path: path.join(__dirname, ".env") });
 let result = [];
 
 const { secret } = process.env;
-console.log({ secret });
+
 function hash(key) {
   return crypto.createHmac("sha256", secret).update(key).digest("hex");
 }
