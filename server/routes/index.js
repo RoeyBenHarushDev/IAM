@@ -11,7 +11,7 @@ module.exports = {
       return constructResponse(response, { location: "HomePage.html" });
     } catch (e) {
       console.log(e);
-      return constructResponse(response, {}, 401);
+      return constructResponse(response, {error: 'Unauthoraized'}, 401);
     }
   },
   "/signup": function handleSignup(body, response) {
