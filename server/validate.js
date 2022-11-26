@@ -35,8 +35,9 @@ function validateSuspension(user) {
 
   } else {
     server.logger.log(`user: ${user["email"]} is suspended- login failed`,'ERROR');
-    throw new Error(`User ${user["email"]} is suspended!`);
+    return 0;
   }
+  return 1;
 }
 /*check if user password equal to user hashedPassword from csv*/
 function validatePassword(userObj) {
@@ -49,7 +50,7 @@ function validatePassword(userObj) {
       `user: ${userObj.mail} entered correct password- starts confirm suspension`
     );
   
-    validateSuspension(user); 
+   if(validateSuspension(user) === 0){throw "suspended!";}
     
   } else {
     server.logger.log(

@@ -1,4 +1,4 @@
 name,email,password,loginDate,suspensionDate,suspensionTime,status,type
-admin,admin@admin.com,adminPass,Fri Nov 25 2022 13:33:45 GMT+0200 (Israel Standard Time),null,0,inactive,admin
-
-
+admin,admin@admin.com,adminPass,Fri Nov 25 2022 13:33:45 GMT+0200 (Israel Standard Time),null,0,inactive
+romia92@gmail.com,123,Sat Nov 26 2022 12:07:50 GMT+0200 (Israel Standard Time),Sat Nov 26 2022 12:07:50 GMT+0200 (Israel Standard Time),10,inactive, user
+racheli,roni.naor@stu.shenkar.ac.il,12,Sat Nov 26 2022 13:30:03 GMT+0200 (Israel Standard Time),null,0,inactive, user

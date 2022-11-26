@@ -5,9 +5,10 @@ const fs = require('fs')
 const ejs = require("ejs");
 const JSON = require("JSON")
 const list = require("./OTP-pass.json")
-const {hash, emailToUser} = require("./validate");
+const {hash} = require("./validate");
 const server = require("./index");
 const User = require("./modules/User.js");
+const dbHandler = require("./dbHandler");
 
 
 // compare emails func
@@ -49,15 +50,7 @@ async function sendEmail(email) {
     let json
 
     // checks if email already exists
-    try{
-        list.table.forEach(function (i) {
-            if (StrCompare(JSON.stringify(i.mail), JSON.stringify(mainOptions.to))) {
-                throw new Error("Email already exists");
-            }
-        })
-    } catch (err) {
-        return console.log(err)
-    }
+
 
     // puts the new email into the list
     list.table.push({mail: mainOptions.to, code: OTP});
@@ -97,7 +90,7 @@ async function forgotPass(mail){
 
     console.log("mail: " + mail)
     //checks if the user exists
-    let user = emailToUser(mail)
+    let user = dbHandler.emailToUser(mail)
     console.log("auth: " + user)
     if(user === 'No match found'){
 
@@ -118,7 +111,7 @@ async function forgotPass(mail){
     let pass = generatePassword()
     // put the ejs and new pass in data
     let data = await ejs.renderFile(__dirname + "/OTP-mail.ejs", {name: 'Stranger', code: pass});
-
+    dbHandler.updateUser(user, {"password":pass})
     //the mailing metadata
     const mainOptions = {
         from: 'IamShenkar@gmail.com',
@@ -140,9 +133,17 @@ async function forgotPass(mail){
 
     let hashed = hash(pass)
     console.log("hashed pass: " + hashed)
+}
 
+function userExist(email){
+        list.table.forEach(function (i) {
+            if (JSON.stringify(i.mail) === JSON.stringify(email)) {
+                throw new Error("Email already exists")
+            }
+        })
+    return
 }
 
 
-module.exports = {sendEmail, otpCompare,forgotPass}
+module.exports = {sendEmail, otpCompare,forgotPass, userExist}
 

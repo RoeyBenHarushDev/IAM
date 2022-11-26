@@ -81,12 +81,12 @@ if(welcomeModel){
     changePassModel.addEventListener('click', () => {
         showChangePassModel.style.display = "block";
         welcomeModel.style.display = "none";
-        userStatus.style.display = "none";
+        userStatus.style.display = "block";
     })
     iamTeam.addEventListener('click', () => {
         welcomeModel.style.display = "block";
         showChangePassModel.style.display = "none";
-        userStatus.style.display = "none";
+        userStatus.style.display = "block";
     })
     showUserStatus.addEventListener('click', () => {
         userStatus.style.display = "block";
@@ -137,8 +137,13 @@ const sendLoginData = async () => {
             window.location.href = location;
         },
         401: () => {
+
             alert("Verification Error");
         },
+        403:()=>
+        {
+            alert("user in suspention!");
+        }
     };
     const body = await response.json();
     const handler = handleResponse[response.status];
@@ -176,8 +181,9 @@ const sendLoginData = async () => {
             .then(response => {
                 //console.log(response))
                 // window.location.href=response.headers.Location;
-                if (response.status===401){
-                    alert("ERROR 401");
+                if (response.status===401 ){
+                    location.reload();
+                    alert("ERROR 401: Email already exists");
                 }
             })
     }
