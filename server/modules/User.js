@@ -9,7 +9,7 @@ module.exports = class User {
     loginDate = new Date(),
     suspensionDate = null,
     suspensionTime = "0",
-    status = "inactive",
+    status = "active",
     type= "user"
   ) {
     this.name = name;

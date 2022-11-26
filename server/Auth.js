@@ -57,15 +57,15 @@ async function sendEmail(email) {
 
     json = JSON.stringify(list)
     fs.writeFile("./OTP-pass.json", json, 'utf-8', callback => {
-        console.log("wrote file successfully")
+      server.logger.log("wrote file successfully")
     })
 
     //send the mail with the OTP to the client email
     await transporter.sendMail(mainOptions, (err, info) => {
         if (err) {
-            console.log(err);
+          server.logger.log(err);
         } else {
-            console.log('Message sent: ' + info.response + "\nwith OTP: " + OTP);
+          server.logger.log('Message sent: ' + info.response + "\nwith OTP: " + OTP);
         }
     });
 }
@@ -75,7 +75,7 @@ function otpCompare(userName, email, pass, code) {
     list.table.forEach(function (i) {
         if (email === i.mail) {
             if (code === i.code) {
-                console.log("user in create: " + user);
+              server.logger.log("user in create: " + user);
                 user.toCSVRow();
             }
             else
@@ -87,11 +87,14 @@ function otpCompare(userName, email, pass, code) {
 }
 
 async function forgotPass(mail){
-
-    console.log("mail: " + mail)
     //checks if the user exists
+<<<<<<< HEAD
     let user = dbHandler.emailToUser(mail)
     console.log("auth: " + user)
+=======
+    let user = emailToUser(mail)
+    server.logger.log("auth: " + user)
+>>>>>>> roniFix
     if(user === 'No match found'){
 
         server.logger.log(`user tried to reset pass with the mail: ${mail} and it was not found`,'WARN')
@@ -125,15 +128,19 @@ async function forgotPass(mail){
     // send the mail with the new Password to the client email
     await transporter.sendMail(mainOptions, (err, info) => {
         if (err) {
-            console.log(err);
+          server.logger.log(err);
         } else {
-            console.log('Message sent: ' + info.response + "\nwith new Pass: " + pass);
+          server.logger.log('Message sent: ' + info.response + "\nwith new Pass: " + pass);
         }
     });
 
     let hashed = hash(pass)
+<<<<<<< HEAD
     console.log("hashed pass: " + hashed)
 }
+=======
+    server.logger.log("hashed pass: " + hashed)
+>>>>>>> roniFix
 
 function userExist(email){
         list.table.forEach(function (i) {

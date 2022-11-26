@@ -24,7 +24,7 @@ function validateSuspension(user) {
   const today = new Date();
   let expiredDate = new Date();
   expiredDate.setDate(suspendStartDate_date.getDate() + parseInt(suspendTime));
-  console.log(
+  server.logger.log(
     `suspend : ${suspendStartDate_date} time: ${suspendTime}  expired: ${expiredDate} today: ${today}`
   );
 

@@ -9,22 +9,13 @@ class Logger extends EventEmitter {
     this.storage = {
       write: (data) =>
         fs.appendFile(path.join(__dirname, "/logs.txt"), data, null, () =>
-          console.log("logging...")
+        console.log("logging logs to server...")
         ),
     };
     this.on("logToFile", this.logToFile);
 
     return this;
   }
-
-/*
-  newRequest(request) {
-    const time = moment().format("YY-MM-DD hh:mm");
-    const msg = `${time}-> ${request.method}:${request.url}`;
-    this.emit("logToFile", msg);
-    console.log(msg);
-  }
-*/
 
   log(message = "", state = "INFO") {
     const time = moment().format("DD-MM-YY hh:mm");
