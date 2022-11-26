@@ -1,4 +1,0 @@
-name,email,password,loginDate,suspensionDate,suspensionTime,status,type
-admin,admin@admin.com,8bb814e9f61f2ec420039e3f764eddb1670a69fda430de74548962c9cbfdb44e,Fri Nov 25 2022 13:33:45 GMT+0200 (Israel Standard Time),null,0,active
-gilad,Giladschneider66@gmail.com,4f4a040f15695030d757981a2daaa316bafb76bac09430ff77d3a62d73c311f7,Sat Nov 26 2022 17:53:08 GMT+0200 (Israel Standard Time),null,0,active
-racheli,dkracheli135@gmail.com,NfqE30WxymOz,Sat Nov 26 2022 18:33:31 GMT+0200 (Israel Standard Time),null,0,active
