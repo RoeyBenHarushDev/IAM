@@ -8,6 +8,20 @@ const closeForgot = document.getElementById('closeForgot');
 const openEmailCon = document.getElementById('openEmailConfirmation');
 /*const closeEmailCon = document.getElementById('closeEmailCon');*/
 const linkToOTP = document.getElementById('linkToOTP');
+//
+// window.addEventListener("load", (event)=>{
+//     const queryString = window.location.search
+//     const urlParams = new URLSearchParams(queryString);
+//     const mail = urlParams.get('mail')
+//     console.log(mail);
+// })
+function getMail(){
+    const queryString = window.location.search
+    const urlParams = new URLSearchParams(queryString);
+    const mail = urlParams.get('mail')
+    return mail
+}
+
 
 if(signUpButton){
 
@@ -45,11 +59,6 @@ if(signUpButton){
         backFlipCon.style.display = "none";
     })
 
-    // closeEmailCon.addEventListener('click', ()=> {
-    //     container.classList.remove("emailConfirmation-active");
-    //     container.style.display = "block";
-    //     backFlipCon.style.display = "block";
-    // })
 }
 
 const matchPass = document.getElementById('matchPass');
@@ -75,27 +84,45 @@ const changePassModel = document.getElementById('changePassModel');
 const showChangePassModel = document.getElementById('changePass');
 const userStatus = document.getElementById("userStatusModel");
 const showUserStatus = document.getElementById("usersStatus");
+const approveAdminModel = document.getElementById("approveAdminModel");
 
 if(welcomeModel){
 
     changePassModel.addEventListener('click', () => {
         showChangePassModel.style.display = "block";
         welcomeModel.style.display = "none";
-        userStatus.style.display = "block";
+        userStatus.style.display = "none";
+        approveAdminModel.style.display = "none";
+
     })
     iamTeam.addEventListener('click', () => {
         welcomeModel.style.display = "block";
         showChangePassModel.style.display = "none";
-        userStatus.style.display = "block";
+        userStatus.style.display = "none";
+        approveAdminModel.style.display = "none";
+
     })
     showUserStatus.addEventListener('click', () => {
-        userStatus.style.display = "block";
+        approveAdminModel.style.display = "block";
+        userStatus.style.display = "none";
         welcomeModel.style.display = "none";
         showChangePassModel.style.display = "none";
+        if(adminPinCheack(adminpin)){
+            userStatus.style.display = "block";
+            welcomeModel.style.display = "none";
+            showChangePassModel.style.display = "none";
+            approveAdminModel.style.display = "none";
+        }
+        else{
+            alert("You Are NOT admin!");
+        }
     })
 }
-
-
+// async function adminPinCheack(adminPin){
+//     if(adminPin === realAdminPin)
+//         return true;
+//     return false;
+// }
 
 //Cancellation of sending a form before confirmation of the email
 $(document).ready(function() {
@@ -123,6 +150,7 @@ $('#pass, #repass').on('keyup', function () {
 });
 
 const sendLoginData = async () => {
+    user = document.getElementById("userEmail").value;
     const data = {
         mail: document.getElementById("userEmail").value,
         pass: document.getElementById("userPass").value,
@@ -196,8 +224,7 @@ const sendLoginData = async () => {
             body: JSON.stringify(data)
         })
             .then(response => {
-                //console.log(response))
-                // window.location.href=response.headers.Location;
+                location.reload();
                 if (response.status===401){
                     alert("email not found");
                 }
@@ -234,7 +261,22 @@ const sendLoginData = async () => {
             handler(body);
         }
     };
-
+// const changePassword= () => {
+//     const data = {
+//         "mail": getMail(),
+//         "pass": document.getElementById("currPassword").value,
+//         "newpass":document.getElementById("newPassword").value
+//     };
+//     fetch("http://localhost:8080/changePassword", {
+//         method: 'POST',
+//         body: JSON.stringify(data)
+//     })
+//         .then(response => {
+//             if (response.status===401){
+//                 alert("email not found");
+//             }
+//         })
+// }
 
 //LOGOUT & DELETING COOKIES
 
@@ -262,18 +304,28 @@ const sendLoginData = async () => {
 
 // While suspended are checked date form is open
 
-    function openDateForm() {
-        let checkRadio = document.querySelector(
-            'input[name="userStatus"]:checked');
+function openDateForm() {
+    let checkRadio = document.querySelector(
+        'input[name="userStatus"]:checked');
 
-        if (checkRadio.value === "suspended") {
-            document.getElementById("disp").innerHTML = checkRadio.value + " button checked" + `<br><input type="date" id="start" name="trip-start"
-        value="2018-07-22"
-        min="2018-01-01" max="2050-12-31">`;
-        } else if (checkRadio.value !== "suspended") {
-            document.getElementById("disp").innerHTML = checkRadio.value + " button checked"
-        } else {
-            document.getElementById("disp").innerHTML
-                = "No one selected";
-        }
+    if (checkRadio.value === "suspended") {
+        document.getElementById("disp").innerHTML = checkRadio.value + " button checked" + `<br><input type="number" id="start" name="trip-start"
+        value="1"
+        min="0">`;
+    } else if (checkRadio.value !== "suspended") {
+        document.getElementById("disp").innerHTML = checkRadio.value + " button checked"
+    } else {
+        document.getElementById("disp").innerHTML
+            = "No one selected";
     }
+}
+const suspension = async () => {
+    const data = {
+        "mail":document.getElementById("userEmail").value,
+        "suspensionDate": document.getElementById("start").value,
+    };
+    const response = await fetch("http://localhost:8080/suspension", {
+        method: "POST",
+        body: JSON.stringify(data),
+    });
+}

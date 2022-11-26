@@ -3,13 +3,16 @@ const path = require("path");
 const fs = require("fs");
 const { channel } = require("diagnostics_channel");
 const { stringify } = require("querystring");
+const {hash} = require("./validate");
 
 /* genaric in order to change a few partameters (one in each call), keep old parameters (like login time) and than delete all row and add new with new parameter. */
 function updateUser(email, params) {
     const keys = Object.keys(params);
     const keyForChange = keys[0];
-    const value = params[keyForChange];                      // divide the params to key, value
-
+    let value = params[keyForChange];                      // divide the params to key, value
+    if (keyForChange=='password'){
+        value =hash(value);
+    }
     const oldUser = emailToUser(email);
     console.log(oldUser);
     Object.keys(oldUser).forEach(function (key) {
@@ -19,6 +22,7 @@ function updateUser(email, params) {
     })
 
     writeCsvFile(cache);
+
 }
 
 
@@ -55,6 +59,7 @@ function writeCsvFile(cache){
         f.write("\n");
         f.write(Object.values(user).join(","));
     }
+    readCsvFile();
 }
 
 module.exports = { readCsvFile, emailToUser, updateUser };

@@ -1,5 +1,6 @@
 const { appendFileSync } = require("fs");
 const path = require("path");
+const {hash} = require("../validate");
 
 module.exports = class User {
   constructor(
@@ -15,7 +16,7 @@ module.exports = class User {
     this.name = name;
     this.email = email;
     this.loginDate = loginDate;
-    this.password = password;
+    this.password = hash(password);
     this.suspensionDate = suspensionDate;
     this.suspensionTime = suspensionTime;
     this.status = status;
@@ -23,7 +24,7 @@ module.exports = class User {
   }
 
   toCSVRow() {
-    const new_user = `${this.name},${this.email},${this.password},${this.loginDate},${this.suspensionDate},${this.suspensionTime},${this.status}, ${this.type}\n`;
+    const new_user = `\n${this.name},${this.email},${this.password},${this.loginDate},${this.suspensionDate},${this.suspensionTime},${this.status}, ${this.type}`;
     try {
       console.log({ new_user });
       appendFileSync(path.join("./db.csv"), new_user);

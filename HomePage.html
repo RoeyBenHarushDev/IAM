@@ -10,35 +10,42 @@
     <title>IAM HomePage</title>
 </head>
 <body>
-    <div class="topNav">
-        <h1 class="IAM"><font color="orange">IAM </font> TEAM!</h1>
-        <ul>
-            <li><a href="#">Admin</a></li>
-            <div class="setting">
+<div class="topNav">
+    <h1 class="IAM"><font color="orange">IAM </font> TEAM!</h1>
+    <ul>
+        <div class="setting">
             <li><a href="#" class="setting">Setting</a>            </li>
             <div class="dropdown-content">
                 <a href="#" id="changePassModel">Change Password</a>
                 <a href="#" id="usersStatus">User's Status</a>
-              </div>
             </div>
-            <li><a href="#" id="logout" onclick="userLogOut()">Log Out</a></li>
-        </ul>
-    </div>
-    <div class="sideNav">
-        <h1><font color="orange">IAM </font> TEAM!</h1>
-        <div class="line"></div>
-        <ul>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Clients</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </div>
-    <div class="welcomeModel" id="welcomeModel">
-        <h1>Welcome To <font color="orange">IAM </font> TEAM!</h1>
-    </div>
+        </div>
+        <li><a href="#" id="logout">Log Out</a></li>
+    </ul>
+</div>
+<div class="sideNav">
+    <h1><font color="orange">IAM </font> TEAM!</h1>
+    <div class="line"></div>
+    <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Clients</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</div>
+<div class="welcomeModel" id="welcomeModel">
+    <h1>Welcome To <font color="orange">IAM </font> TEAM!</h1>
+</div>
 
-    <form name="userStatusForm" class="userForm" action="#">
+<div class="approveAdminModel" id="approveAdminModel">
+    <div class="approveAdmin">
+        <h1>Are You Sure You Are An <font color="orange">Admin</font>?!</h1>
+        <input type="password" name="password" id="password" placeholder=" Enter PIN Code" required>
+    </div>
+    <button id="sendPin">SEND</button>
+</div>
+
+<form name="userStatusForm" class="userForm" action="#">
     <div class="userStatusModel" id="userStatusModel">
         <label for="current">
             <h3>Enter User Email <span class="required">*</span></h3>
@@ -54,35 +61,35 @@
                 <input type="radio" id="closed" onchange="openDateForm()" name="userStatus" value="closed">
                   <label for="suspended">Suspended</label>
                 <input type="radio" id="suspended" onchange="openDateForm()" name="userStatus" value="suspended">
-            </form> 
+            </form>
         </div>
-        <div id="disp"></div> 
-        <input type="submit" value="SEND">
+        <div id="disp"></div>
+        <input type="submit" value="SEND" onclick="suspension()">
     </div>
 </form>
-    
-    <form name="newPassForm" class="passForm" action="#">
+
+<form name="newPassForm" class="passForm" action="#">
     <div class="changePas" id="changePass">
         <h2>Change Password</h2>
         <div class="passValid">
             <label for="current">
-            <h3>Current Password <span class="required">*</span></h3>
-            <input type="password" id="currPassword" placeholder="Current Password " required/>
-        </label>
-        <label for="new">
-            <h3>New Password <span class="required">*</span></h3>
-            <input type="password" id="newPassword" placeholder="New Password" required/>
-        </label>
-        <label for="confirm">
-            <h3>Confirm Password <span class="required">*</span></h3>
-            <input type="password" id="confirmPassword" placeholder="Confirm Password" required/>
-        </label>
+                <h3>Current Password <span class="required">*</span></h3>
+                <input type="password" id="currPassword" placeholder="Current Password " required/>
+            </label>
+            <label for="new">
+                <h3>New Password <span class="required">*</span></h3>
+                <input type="password" id="newPassword" placeholder="New Password" required/>
+            </label>
+            <label for="confirm">
+                <h3>Confirm Password <span class="required">*</span></h3>
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required/>
+            </label>
         </div>
         <div class="submitBtn">
-        <input type="submit" class="btnNewPass" id="matchPass" value="Set New Password">
+            <input type="submit" class="btnNewPass" id="matchPass" value="Set New Password" onclick="changePassword()">
+        </div>
     </div>
-    </div>
-</form> 
-    <script src="script-qs.js"></script>
+</form>
+<script src="script.js"></script>
 </body>
 </html>
