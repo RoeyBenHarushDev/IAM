@@ -1,0 +1,86 @@
+<style type="text/css">
+  .header {
+    background: #8a8a8a;
+  }
+  .header .columns {
+    padding-bottom: 0;
+  }
+  .header p {
+    color: #fff;
+    padding-top: 15px;
+  }
+  .header .wrapper-inner {
+    padding: 20px;
+  }
+  .header .container {
+    background: transparent;
+  }
+  .primary {
+    size: 25px;
+    background: #FAEBD7;
+    font-weight: bold;
+  }
+  table.button.facebook table td {
+    background: #3B5998 !important;
+    border-color: #3B5998;
+  }
+  table.button.twitter table td {
+    background: #1daced !important;
+    border-color: #1daced;
+  }
+  table.button.google table td {
+    background: #DB4A39 !important;
+    border-color: #DB4A39;
+  }
+  .wrapper.secondary {
+    background: #f3f3f3;
+  }
+</style>
+
+<wrapper class="header">
+  <container>
+    <row class="collapse">
+      <columns small="6">
+<!--        <img src="./Iam-icon.png">-->
+      </columns>
+      <columns small="6">
+        <p class="text-right">IAM Shenkar</p>
+      </columns>
+    </row>
+  </container>
+</wrapper>
+
+<container>
+
+  <spacer size="16"></spacer>
+
+  <row>
+    <columns small="12">
+
+      <h1>Hi, <%= name %></h1>
+      <p class="lead">Here is you OTP for login to IAM</p>
+      <callout class="primary">
+        <h1><p></p> <%= code %><br></h1>
+      </callout>
+    </columns>
+  </row>
+  <wrapper class="secondary">
+
+    <spacer size="16"></spacer>
+
+    <row>
+      <columns large="6">
+        <h5>Connect With Us:</h5>
+        <button class="facebook expand" href="http://zurb.com">Facebook</button>
+        <button class="twitter expand" href="http://zurb.com">Twitter</button>
+        <button class="google expand" href="http://zurb.com">Google+</button>
+      </columns>
+      <columns large="6">
+        <h5>Contact Info:</h5>
+        <p>Email: <a href="mailto:iamshenkar@gmail.com">IAMShenkar@gmail.com</a></p>
+      </columns>
+    </row>
+  </wrapper>
+
+</container>
+
