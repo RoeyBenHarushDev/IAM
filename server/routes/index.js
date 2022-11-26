@@ -3,6 +3,7 @@ const dbHandler = require("../dbHandler");
 const writeCsv = require("../writeCsv");
 const validate = require("../validate")
 const {sendEmail, otpCompare, forgotPass, userExist} = require("../Auth.js");
+const server = require("../index");
 
 module.exports = {
     "/login": function handleLogin(body, response) {
@@ -16,10 +17,9 @@ module.exports = {
     },
     "/signUp": async function handleSignup(body, response) {
         try {
-            console.log(body);
             userExist(body.mail)
-                await sendEmail(body.mail)
-                return constructResponse(response, {}, 200);
+            await sendEmail(body.mail)
+            return constructResponse(response, {}, 200);
 
         } catch (e) {
             console.log(e);
@@ -28,10 +28,9 @@ module.exports = {
     },
     "/confirm": function handleConfirm(body, response) {
         try {
-            let log = otpCompare(body.name, body.mail, body.pass, body.code);
-            console.log(log)
-            //response.write(log);
+            otpCompare(body);
             writeCsv.createUserObject(body);
+            server.logger.log("user in create: " + body.name);
             dbHandler.readCsvFile();
             return constructResponse(response, {error: "OTP is correct"}, 200);
         } catch (e) {

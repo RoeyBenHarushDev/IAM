@@ -49,17 +49,12 @@ async function sendEmail(email) {
         html: data
     };
 
-
     let json
-
-    // checks if email already exists
-
-
     // puts the new email into the list
     list.table.push({mail: mainOptions.to, code: OTP});
 
     json = JSON.stringify(list)
-    fs.writeFile("./OTP-pass.json", json, 'utf-8', callback => {
+    fs.writeFileSync("./OTP-pass.json", json, 'utf-8', callback => {
       server.logger.log("wrote file successfully")
     })
 
@@ -73,13 +68,10 @@ async function sendEmail(email) {
     });
 }
 
-function otpCompare(userName, email, pass, code) {
-    let user = new User(userName, email, pass);
+function otpCompare(user) {
     list.table.forEach(function (i) {
-        if (email === i.mail) {
-            if (code === i.code) {
-              server.logger.log("user in create: " + user);
-                user.toCSVRow();
+        if (user.mail === i.mail) {
+            if (user.code === i.code) {
             }
             else
             {
@@ -91,7 +83,7 @@ function otpCompare(userName, email, pass, code) {
 
 async function forgotPass(mail){
     //checks if the user exists
-    let user = emailToUser(mail)
+    let user = dbHandler.emailToUser(mail)
     server.logger.log("auth: " + user)
     if(user === 'No match found'){
 
@@ -112,7 +104,7 @@ async function forgotPass(mail){
     let pass = generatePassword()
     // put the ejs and new pass in data
     let data = await ejs.renderFile(__dirname + "/OTP-mail.ejs", {name: 'Stranger', code: pass});
-    dbHandler.updateUser(user, {"password":pass})
+    dbHandler.updateUser(user, {"password":hash(pass)})
     //the mailing metadata
     const mainOptions = {
         from: 'IamShenkar@gmail.com',
