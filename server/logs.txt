@@ -1,0 +1,11 @@
+26-11-22 03:51-> [INFO] listening on port: 8080
+26-11-22 03:51-> [INFO] listening on port: 8080
+26-11-22 03:52-> [INFO] listening on port: 8080
+26-11-22 03:54-> [INFO] wrote file successfully
+26-11-22 03:54-> [INFO] Error: Invalid login: 535-5.7.8 Username and Password not accepted. Learn more at
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials bh23-20020a05600c3d1700b003cfa80443a0sm8864652wmb.35 - gsmtp
+26-11-22 03:58-> [INFO] listening on port: 8080
+26-11-22 04:01-> [INFO] listening on port: 8080
+26-11-22 04:01-> [INFO] listening on port: 8080
+26-11-22 04:14-> [INFO] listening on port: 8080
+26-11-22 04:15-> [INFO] listening on port: 8080

@@ -9,7 +9,10 @@ const {hash} = require("./validate");
 const server = require("./index");
 const User = require("./modules/User.js");
 const dbHandler = require("./dbHandler");
+const path = require("path");
 
+require("dotenv").config({ path: path.join(__dirname, ".env") });
+const emailSMTP = process.env.email;
 
 // compare emails func
 function StrCompare(str1, str2) {
@@ -23,8 +26,8 @@ const transporter = node.createTransport(smtp({
     service: 'gmail',
     host: 'smtp.gmail.com',
     auth: {
-        user: 'ShenkarIam@gmail.com',
-        pass: 'uozoglubvgojcrtl'
+        user: 'IamTeamShenkar@gmail.com',
+        pass: emailSMTP
     }
 }));
 
@@ -39,7 +42,7 @@ async function sendEmail(email) {
 
     //the mailing metadata
     const mainOptions = {
-        from: 'IamShenkar@gmail.com',
+        from: 'IamTeamShenkar@gmail.com',
         to: email,   //mail.emailId,
         subject: 'Please Verify you Account',
         // text: 'Your OTP is: ' + OTP
@@ -118,8 +121,6 @@ async function forgotPass(mail){
         // text: 'Your OTP is: ' + OTP
         html: data
     };
-  }
-
 
     // send the mail with the new Password to the client email
     await transporter.sendMail(mainOptions, (err, info) => {
@@ -132,7 +133,7 @@ async function forgotPass(mail){
 
     let hashed = hash(pass)
     server.logger.log("hashed pass: " + hashed)
-
+  }
 function userExist(email){
         list.table.forEach(function (i) {
             if (JSON.stringify(i.mail) === JSON.stringify(email)) {

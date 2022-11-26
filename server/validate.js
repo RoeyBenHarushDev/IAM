@@ -4,8 +4,7 @@ const dbHandler = require("./dbHandler");
 const path = require("path");
 
 require("dotenv").config({ path: path.join(__dirname, ".env") });
-
-const { secret } = process.env;
+const secret = process.env.secret;
 
 function hash(key) {
   return crypto.createHmac("sha256", secret).update(key).digest("hex");
@@ -16,7 +15,7 @@ function validateSuspension(user) {
     server.logger.log(`user: ${user["email"]} is not suspended- login succeeded`);
     return;
   }
-  console.log(user);
+
   const suspendTime = user["suspensionTime"];
   const suspendStartDate = user["suspensionDate"];
   const [day, month, year] = suspendStartDate.split("/");
@@ -27,7 +26,6 @@ function validateSuspension(user) {
   server.logger.log(
     `suspend : ${suspendStartDate_date} time: ${suspendTime}  expired: ${expiredDate} today: ${today}`
   );
-
 
   if (expiredDate.getDate() < today.getDate()) {
     /*user is not suspend*/

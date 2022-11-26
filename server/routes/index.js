@@ -9,7 +9,6 @@ module.exports = {
         try {
             console.log(body);
             validate.validatePassword(body);
-            dbHandler.readCsvFile();
             return constructResponse(response, {location: "HomePage.html"});
         } catch (e) {
             return constructResponse(response, {error: e.message}, 401);
