@@ -20,8 +20,6 @@ module.exports = {
             console.log(body);
             userExist(body.mail)
                 await sendEmail(body.mail)
-                writeCsv.createUserObject(body);
-                dbHandler.readCsvFile();
                 return constructResponse(response, {}, 200);
 
         } catch (e) {
@@ -34,7 +32,8 @@ module.exports = {
             let log = otpCompare(body.name, body.mail, body.pass, body.code);
             console.log(log)
             //response.write(log);
-            let pass = validate.hash(body.pass);
+            writeCsv.createUserObject(body);
+            dbHandler.readCsvFile();
             return constructResponse(response, {error: "OTP is correct"}, 200);
         } catch (e) {
             return constructResponse(response, {error: e.message}, 401);
