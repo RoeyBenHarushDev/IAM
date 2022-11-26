@@ -45,7 +45,7 @@ function validatePassword(userObj) {
   if (user==="no match found"){
     throw new Error("no match found");
   }
-  if (hash(userObj.pass) === hash(user.password)) {
+  if (hash(userObj.pass) === user.password) {
     server.logger.log(
       `user: ${userObj.mail} entered correct password- starts confirm suspension`
     );

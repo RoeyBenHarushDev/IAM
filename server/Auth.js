@@ -88,13 +88,8 @@ function otpCompare(userName, email, pass, code) {
 
 async function forgotPass(mail){
     //checks if the user exists
-<<<<<<< HEAD
-    let user = dbHandler.emailToUser(mail)
-    console.log("auth: " + user)
-=======
     let user = emailToUser(mail)
     server.logger.log("auth: " + user)
->>>>>>> roniFix
     if(user === 'No match found'){
 
         server.logger.log(`user tried to reset pass with the mail: ${mail} and it was not found`,'WARN')
@@ -123,6 +118,7 @@ async function forgotPass(mail){
         // text: 'Your OTP is: ' + OTP
         html: data
     };
+  }
 
 
     // send the mail with the new Password to the client email
@@ -135,12 +131,7 @@ async function forgotPass(mail){
     });
 
     let hashed = hash(pass)
-<<<<<<< HEAD
-    console.log("hashed pass: " + hashed)
-}
-=======
     server.logger.log("hashed pass: " + hashed)
->>>>>>> roniFix
 
 function userExist(email){
         list.table.forEach(function (i) {
