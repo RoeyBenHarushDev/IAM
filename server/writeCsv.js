@@ -5,7 +5,7 @@ function createUserObject(body) {
   const email = body.mail;
   const password = body.pass;
   let user = new User(name, email, password);
-  console.log("user in create: " + user);
+  server.logger.log("user in create: " + user);
   user.toCSVRow();
 }
 

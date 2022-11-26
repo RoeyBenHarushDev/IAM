@@ -15,7 +15,7 @@ function emailToUser(mail) {
     cache = [];
     let filePath = path.join(__dirname, "db.csv");
     let f = fs.readFileSync(filePath, { encoding: "utf-8" }, function (err) {
-        console.log(err);
+        server.logger.log(err);
     });
     f = f.split("\n");
     let headers = f.shift().split(",");

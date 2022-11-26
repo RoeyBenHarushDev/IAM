@@ -13,10 +13,11 @@
   "name": "iam",
   "version": "1.0.0",
   "description": "Iam shenkar team",
-  "main": " server/index.js",
+  "main": "node server/index.js",
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js"
   },
   "repository": {
     "type": "git",

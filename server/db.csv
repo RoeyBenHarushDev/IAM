@@ -1,2 +1,2 @@
 name,email,password,loginDate,suspensionDate,suspensionTime,status,type
-admin,admin@admin.com,adminPass,Fri Nov 25 2022 13:33:45 GMT+0200 (Israel Standard Time),null,0,inactive,admin
+admin,admin@admin.com,adminPass,Fri Nov 25 2022 13:33:45 GMT+0200 (Israel Standard Time),null,0,active,admin

@@ -1,15 +1,13 @@
 const { constructResponse } = require("../utils");
 const dbHandler = require("../dbHandler");
 const writeCsv = require("../writeCsv");
-const validate = require("../validate")
-const { sendEmail, otpCompare,forgotPass } = require("../Auth.js");
-
+const validate = require("../validate");
+const { sendEmail, otpCompare, forgotPass } = require("../Auth.js");
 
 module.exports = {
   "/login": function handleLogin(body, response) {
     try {
-        console.log(body);
-        validate.validatePassword(body);
+      validate.validatePassword(body);
       dbHandler.readCsvFile();
       return constructResponse(response, { location: "HomePage.html" });
     } catch (e) {
@@ -19,8 +17,7 @@ module.exports = {
   },
   "/signUp": async function handleSignup(body, response) {
     try {
-      console.log( body );
-      await sendEmail(body.mail)
+      await sendEmail(body.mail);
       writeCsv.createUserObject(body);
       dbHandler.readCsvFile();
       return constructResponse(response, {}, 200);
@@ -31,8 +28,8 @@ module.exports = {
   },
   "/confirm": function handleConfirm(body, response) {
     try {
-      let log = otpCompare(body.name,body.mail,body.pass,body.code);        
-      console.log(log)
+      let log = otpCompare(body.name, body.mail, body.pass, body.code);
+      console.log(log);
       //response.write(log);
       let pass = validate.hash(body.pass);
       return constructResponse(response, { error: "OTP is correct" }, 200);
@@ -42,8 +39,8 @@ module.exports = {
   },
   "/forgotPassword": async function handleForgotPass(body, response) {
     try {
-      return constructResponse(response, {});
       let log = await forgotPass(body.mail);
+      return constructResponse(response, {});
       return response.end();
     } catch (e) {
       console.log(e);

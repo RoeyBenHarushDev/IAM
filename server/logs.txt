@@ -38,3 +38,9 @@
 26-11-22 12:37-> [INFO] user: roni@gmail.com is not suspended- login succeeded
 26-11-22 12:45-> [INFO] listening on port: 8080
 26-11-22 12:49-> [INFO] listening on port: 8080
+26-11-22 01:27-> [INFO] listening on port: 8080
+26-11-22 01:28-> [INFO] user: roni@walla.co.il entered correct password- starts confirm suspension
+26-11-22 01:28-> [ERROR] user: roni@walla.co.il is suspended- login failed
+26-11-22 01:58-> [INFO] listening on port: 8080
+26-11-22 02:15-> [INFO] listening on port: 8080
+26-11-22 02:15-> [INFO] listening on port: 8080

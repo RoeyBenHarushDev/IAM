@@ -127,7 +127,6 @@ const sendLoginData = async () => {
         mail: document.getElementById("userEmail").value,
         pass: document.getElementById("userPass").value,
     };
-    console.log(data);
     const response = await fetch("http://localhost:8080/login", {
         method: "POST",
         body: JSON.stringify(data),
@@ -252,7 +251,6 @@ const sendLoginData = async () => {
                 }
             }
             window.location = "index.html";
-            console.log("im here");
         })
     }
 

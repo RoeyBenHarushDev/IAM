@@ -8,7 +8,6 @@ const { constructResponse } = require("./utils");
 const dbHandler = require("./dbHandler");
 
 http.createServer((request, response) => {
-  console.log("CREATE");
     let body = [];
     request
       .on("error", (err) => {
