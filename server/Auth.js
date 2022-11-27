@@ -54,7 +54,7 @@ async function sendEmail(email) {
     list.table.push({mail: mainOptions.to, code: OTP});
 
     json = JSON.stringify(list)
-    fs.writeFileSync("./OTP-pass.json", json, 'utf-8', callback => {
+    fs.writeFileSync("./server/OTP-pass.json", json, 'utf-8', callback => {
       server.logger.log("wrote file successfully")
     })
 

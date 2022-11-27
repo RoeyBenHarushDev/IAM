@@ -395,3 +395,41 @@ with OTP: 103086
 27-11-22 01:05-> [INFO] Message sent: 250 2.0.0 OK  1669503938 r12-20020a5d494c000000b00241b6d27ef1sm6765888wrs.104 - gsmtp
 with OTP: 050034
 27-11-22 01:05-> [INFO] user in create: racheli
+27-11-22 01:42-> [INFO] listening on port: 8080
+27-11-22 01:43-> [INFO] Error: Invalid login: 535-5.7.8 Username and Password not accepted. Learn more at
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials f14-20020a05600c154e00b003c6f3e5ba42sm16196220wmg.46 - gsmtp
+27-11-22 01:44-> [INFO] listening on port: 8080
+27-11-22 01:44-> [INFO] Message sent: 250 2.0.0 OK  1669506290 r11-20020a05600c35cb00b003a84375d0d1sm15428250wmq.44 - gsmtp
+with OTP: 472868
+27-11-22 01:44-> [INFO] user in create: Shaharariel
+27-11-22 01:45-> [ERROR] user: limudim.shahar@gmail.com entered wrong password- login failed
+27-11-22 01:45-> [ERROR] user: Limudim.Shahar@gmail.com entered wrong password- login failed
+27-11-22 01:45-> [INFO] auth: User does'nt exist
+27-11-22 01:46-> [INFO] user: racheli.dekel@stu.shenkar.at.il entered correct password- starts confirm suspension
+27-11-22 01:46-> [INFO] user: racheli.dekel@stu.shenkar.at.il is not suspended- login succeeded
+27-11-22 01:46-> [INFO] user: racheli.dekel@stu.shenkar.at.il entered correct password- starts confirm suspension
+27-11-22 01:46-> [INFO] user: racheli.dekel@stu.shenkar.at.il  password Change
+27-11-22 01:46-> [INFO] user: racheli.dekel@stu.shenkar.at.il entered correct password- starts confirm suspension
+27-11-22 01:46-> [INFO] user: racheli.dekel@stu.shenkar.at.il is not suspended- login succeeded
+27-11-22 01:47-> [INFO] auth: [object Object]
+27-11-22 01:47-> [INFO] hashed pass: e650d10f2d3b570b8f396eac49bbe8ad5006d2fba93122b481a8766c50649b13
+27-11-22 01:47-> [INFO] Message sent: 250 2.0.0 OK  1669506423 h20-20020a05600c351400b003c6cd82596esm15693764wmq.43 - gsmtp
+with new Pass: iEpWlA4WAWEE
+27-11-22 01:47-> [ERROR] user: racheli.dekel@stu.shenkar.at.il entered wrong password- login failed
+27-11-22 01:47-> [INFO] user: racheli.dekel@stu.shenkar.at.il entered correct password- starts confirm suspension
+27-11-22 01:47-> [INFO] user: racheli.dekel@stu.shenkar.at.il is not suspended- login succeeded
+27-11-22 01:47-> [INFO] user: racheli.dekel@stu.shenkar.at.il entered correct password- starts confirm suspension
+27-11-22 01:47-> [INFO] user: racheli.dekel@stu.shenkar.at.il is not suspended- login succeeded
+27-11-22 01:50-> [INFO] user: racheli.dekel@stu.shenkar.at.il entered correct password- starts confirm suspension
+27-11-22 01:50-> [INFO] user: racheli.dekel@stu.shenkar.at.il is not suspended- login succeeded
+27-11-22 01:51-> [INFO] user: racheli.dekel@stu.shenkar.at.il entered correct password- starts confirm suspension
+27-11-22 01:51-> [INFO] suspend : Invalid Date time: 5  expired: Invalid Date today: Sun Nov 27 2022 01:51:28 GMT+0200 (Israel Standard Time)
+27-11-22 01:51-> [INFO] user: racheli.dekel@stu.shenkar.at.il is not suspended- login succeeded
+27-11-22 01:51-> [INFO] listening on port: 8080
+27-11-22 01:51-> [INFO] Message sent: 250 2.0.0 OK  1669506721 r14-20020a5d4e4e000000b002366ded5864sm6869178wrt.116 - gsmtp
+with OTP: 485058
+27-11-22 01:52-> [INFO] user in create: Shaharariel
+27-11-22 01:55-> [INFO] listening on port: 8080
+27-11-22 01:55-> [INFO] Message sent: 250 2.0.0 OK  1669506926 g3-20020adffc83000000b0024207ed4ce0sm4135566wrr.58 - gsmtp
+with OTP: 330297
+27-11-22 01:55-> [INFO] user in create: Shaharariel
